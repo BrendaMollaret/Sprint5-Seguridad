@@ -51,7 +51,7 @@ public class Factura extends BaseEntity {
     private Pedido pedido;
 
     @OneToMany
-    @JoinColumn(name = "id_detalle_factura")
+    @JoinColumn(name = "id_detalle_pedido")
     private List<DetallePedido> detallePedidoList = new ArrayList<>();
 
 
