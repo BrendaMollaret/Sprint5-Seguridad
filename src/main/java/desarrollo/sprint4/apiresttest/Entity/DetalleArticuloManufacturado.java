@@ -15,13 +15,9 @@ public class DetalleArticuloManufacturado extends BaseEntity{
     @Column(name = "cantidad")
     private int cantidad;
 
-    //Relations
+    //Relaciones
     @ManyToOne
     @JoinColumn(name = "id_articulo_insumo")
     private ArticuloInsumo articuloInsumo;
-
-    @ManyToOne
-    @JoinColumn(name = "id_articulo_manufacturado")
-    private ArticuloManufacturado articuloManufacturado;
 
 }
