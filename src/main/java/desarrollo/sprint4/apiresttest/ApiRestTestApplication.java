@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
@@ -230,7 +228,7 @@ public class ApiRestTestApplication {
 
             //Crear factura
             Factura factura1 = Factura.builder()
-                    .nroFactura(0001)
+                    .nroFactura(1)
                     .fechaHoraFacturacion(fecha)
                     .descuento(BigDecimal.valueOf(10))
                     .formaPago(FormaPago.EFECTIVO)
@@ -238,7 +236,7 @@ public class ApiRestTestApplication {
                     .build();
 
             Factura factura2 = Factura.builder()
-                    .nroFactura(0002)
+                    .nroFactura(2)
                     .fechaHoraFacturacion(fecha)
                     .descuento(BigDecimal.valueOf(0))
                     .formaPago(FormaPago.EFECTIVO)
