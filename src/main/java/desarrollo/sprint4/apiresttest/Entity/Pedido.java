@@ -1,7 +1,9 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
-import Spring3.ElBuenSabor.enumeration.FormaPago;
-import Spring3.ElBuenSabor.enumeration.TipoEnvio;
+import desarrollo.sprint4.apiresttest.Enumeration.EstadoPedido;
+import desarrollo.sprint4.apiresttest.Enumeration.FormaPago;
+import desarrollo.sprint4.apiresttest.Enumeration.TipoEnvio;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,16 +19,31 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Pedido extends BaseEntity {
+
     @Column(name = "fecha_hora_pedido")
     private Date fechaHoraPedido;
+
+    @Column(name = "fecha_hora_modificacion_pedido")
+    private Date fechaHoraModificacionPedido;
+
+    @Column(name = "fecha_hora_baja_pedido")
+    private Date fechaHoraBajaPedido;
+
     @Column(name = "fecha_hora_estimada_finalizacion")
     private Date fechaHoraEstimadaFinalizacion;
+
     @Column(name = "total_precio")
     private double totalPrecio;
+
     @Column(name = "tipo_envio")
     private TipoEnvio tipoEnvio;
+
     @Column(name = "forma_pago")
     private FormaPago formaPago;
+
+    @Column(name = "estado_pedido")
+    private EstadoPedido estadoPedido;
+
 
     //Relaciones
     @ManyToOne
@@ -36,10 +53,6 @@ public class Pedido extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "id_estado_pedido")
-    private EstadoPedido estadoPedido;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "pedido_id")

@@ -15,18 +15,29 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Cliente extends BaseEntity{
+
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "apellido")
     private String apellido ;
+
     @Column(name = "telefono")
     private String telefono;
+
     @Column(name = "mail")
     private String mail;
+
+    @Column(name = "fecha_hora_alta_cliente")
+    private Date fechaHoraAltaCliente;
+
+    @Column(name = "fecha_hora_modificacion_cliente")
+    private Date fechaHoraModificacionCliente;
+
     @Column(name = "fecha_hora_baja_cliente")
     private Date fechaHoraBajaCliente;
 
-    //Relations
+    //Relaciones
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     @Builder.Default
@@ -35,4 +46,8 @@ public class Cliente extends BaseEntity{
     public void agregarDomicilio(Domicilio domi){
         domicilios.add(domi);
     }
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

@@ -17,10 +17,17 @@ import java.util.List;
 public class Rubro extends BaseEntity {
     @Column(name = "nombre_rubro")
     private String nombreRubro;
-    @Column(name = "fecha_hora_baja_producto")
+
+    @Column(name = "fecha_hora_alta_rubro")
+    private Date fechaHoraAltaProducto;
+
+    @Column(name = "fecha_hora_baja_rubro")
     private Date fechaHoraBajaProducto;
 
-    //Relations
+    @Column(name = "fecha_hora_modificacion_rubro")
+    private Date fechaHoraModificacionProducto;
+
+    //Relaciones
     @ManyToOne
     @JoinColumn(name = "id_rubro_padre")
     private Rubro rubroPadre;
@@ -28,10 +35,6 @@ public class Rubro extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "rubro_id")
     @Builder.Default
-    private List<Producto> productos = new ArrayList<>();
+    private List<Rubro> rubros = new ArrayList<>();
 
-    public void agregarProducto(Producto prod){
-
-        productos.add(prod);
-    }
 }

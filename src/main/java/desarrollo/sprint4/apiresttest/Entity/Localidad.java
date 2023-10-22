@@ -14,8 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Localidad extends BaseEntity{
+
     @Column(name = "nombre_localidad")
     private String nombreLocalidad;
+
     @Column(name = "codigo_postal")
     private int codigoPostal;
 }
