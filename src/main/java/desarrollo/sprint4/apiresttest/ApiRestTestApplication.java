@@ -40,6 +40,7 @@ public class ApiRestTestApplication {
         System.out.println("---------ESTOY FUNCIONANDO---------");
     }
 
+    /*
     @Bean
     CommandLineRunner init(ClienteRepository clienteRepository) {
         return args -> {
@@ -268,5 +269,5 @@ public class ApiRestTestApplication {
             clienteRepository.save(cliente2);
 
         };
-    }
+    } */
 }

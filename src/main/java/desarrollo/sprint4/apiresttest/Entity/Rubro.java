@@ -18,14 +18,14 @@ public class Rubro extends BaseEntity {
     @Column(name = "nombre_rubro")
     private String nombreRubro;
 
-    @Column(name = "fecha_hora_alta_rubro")
-    private Date fechaHoraAltaProducto;
+    @Column(name = "fecha_alta_rubro")
+    private Date fechaAltaProducto;
 
-    @Column(name = "fecha_hora_baja_rubro")
-    private Date fechaHoraBajaProducto;
+    @Column(name = "fecha_baja_rubro")
+    private Date fechaBajaProducto;
 
-    @Column(name = "fecha_hora_modificacion_rubro")
-    private Date fechaHoraModificacionProducto;
+    @Column(name = "fecha_modificacion_rubro")
+    private Date fechaModificacionProducto;
 
     //Relaciones
     @ManyToOne
