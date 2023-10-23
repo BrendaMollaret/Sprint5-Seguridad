@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Rubro extends BaseEntity {
+
     @Column(name = "nombre_rubro")
     private String nombreRubro;
 
