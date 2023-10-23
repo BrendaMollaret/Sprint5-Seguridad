@@ -32,6 +32,7 @@ public class ApiRestTestApplication {
 
     @Autowired
     UnidadMedidaRepository unidadMedidaRepository;
+
     @Autowired
     LocalidadRepository localidadRepository;
 
