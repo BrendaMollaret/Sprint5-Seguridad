@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -17,13 +18,13 @@ import java.util.Date;
 public class ArticuloInsumo extends BaseEntity{
 
     @Column(name = "fecha_hora_alta_articuloInsumo")
-    private LocalTime fechaHoraAltaArticuloInsumo;
+    private LocalDate fechaHoraAltaArticuloInsumo;
 
     @Column(name = "fecha_hora_modificacion_articuloinsumo")
-    private Date fechaHoraModificacionArticuloInsumo;
+    private LocalDate fechaHoraModificacionArticuloInsumo;
 
     @Column(name = "fecha_hora_baja_articuloinsumo")
-    private Date fechaHoraBajaArticuloInsumo;
+    private LocalDate fechaHoraBajaArticuloInsumo;
 
     @Column(name = "nombreArticuloInsumo")
     private String nombreArticuloInsumo;

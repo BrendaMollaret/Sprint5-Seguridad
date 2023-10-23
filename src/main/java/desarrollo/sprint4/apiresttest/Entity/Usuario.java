@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,14 +18,19 @@ import java.util.Date;
 public class Usuario extends BaseEntity{
 
     @Column(name = "fecha_alta_usuario")
-    private Date fechaAltaUsuario;
+    private LocalDate fechaAltaUsuario;
 
     @Column(name = "fecha_baja_usuario")
-    private Date fechaBajaUsuario;
+    private LocalDate fechaBajaUsuario;
 
     @Column(name = "fecha_modificacion_usuario")
-    private Date fechaModificacionUsuario;
+    private LocalDate fechaModificacionUsuario;
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "auth0Id")
+    private String auth0Id;
+
+
 }

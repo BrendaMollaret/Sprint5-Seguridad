@@ -15,8 +15,7 @@ public class LocalidadServiceImpl  extends BaseServiceImpl<Localidad, Long> impl
     @Autowired
     private LocalidadRepository localidadRepository;
 
-    public LocalidadServiceImpl(BaseRepository<Localidad, Long> baseRepository, LocalidadRepository localidadRepository) {
+    public LocalidadServiceImpl(BaseRepository<Localidad, Long> baseRepository) {
         super(baseRepository);
-        this.localidadRepository = localidadRepository;
     }
 }

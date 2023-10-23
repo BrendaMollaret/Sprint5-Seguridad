@@ -3,6 +3,7 @@ package desarrollo.sprint4.apiresttest.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,13 +30,13 @@ public class Cliente extends BaseEntity{
     private String mail;
 
     @Column(name = "fecha_hora_alta_cliente")
-    private Date fechaHoraAltaCliente;
+    private LocalDate fechaHoraAltaCliente;
 
     @Column(name = "fecha_hora_modificacion_cliente")
-    private Date fechaHoraModificacionCliente;
+    private LocalDate fechaHoraModificacionCliente;
 
     @Column(name = "fecha_hora_baja_cliente")
-    private Date fechaHoraBajaCliente;
+    private LocalDate fechaHoraBajaCliente;
 
     //Relaciones
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

@@ -3,6 +3,7 @@ package desarrollo.sprint4.apiresttest.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,18 +28,15 @@ public class Domicilio extends BaseEntity{
     private int nroDpto;
 
     @Column(name = "fecha_hora_alta_domicilio")
-    private Date fechaHoraAltaDomicilio;
+    private LocalDate fechaHoraAltaDomicilio;
 
     @Column(name = "fecha_hora_modificacion_domicilio")
-    private Date fechaHoraModificacionDomicilio;
+    private LocalDate fechaHoraModificacionDomicilio;
 
     @Column(name = "fecha_hora_baja_domicilio")
-    private Date fechaHoraBajaDomicilio;
+    private LocalDate fechaHoraBajaDomicilio;
 
     //Relaciones
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
-    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_localidad")

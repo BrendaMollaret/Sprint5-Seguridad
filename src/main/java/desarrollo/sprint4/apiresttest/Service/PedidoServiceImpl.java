@@ -13,9 +13,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido, Long> implements 
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public PedidoServiceImpl(BaseRepository<Pedido, Long> baseRepository, PedidoRepository pedidoRepository) {
+    public PedidoServiceImpl(BaseRepository<Pedido, Long> baseRepository) {
         super(baseRepository);
-        this.pedidoRepository = pedidoRepository;
     }
 
 }

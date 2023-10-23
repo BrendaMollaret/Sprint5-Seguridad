@@ -3,6 +3,7 @@ package desarrollo.sprint4.apiresttest.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class UnidadMedida extends BaseEntity {
     private String abrevitaturaUnidadMedida;
 
     @Column(name = "fecha_alta_unidad_medida")
-    private LocalDateTime fechaAltaUnidadMedida;
+    private LocalDate fechaAltaUnidadMedida;
 
     @Column(name = "fecha_unidad_medida")
     private Date fechaBajaUnidadMedida;

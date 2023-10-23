@@ -14,8 +14,8 @@ public class DomicilioServiceImpl extends BaseServiceImpl<Domicilio, Long> imple
     @Autowired
     private DomicilioRepository domicilioRepository;
 
-    public DomicilioServiceImpl(BaseRepository<Domicilio, Long> baseRepository, DomicilioRepository domicilioRepository) {
+    public DomicilioServiceImpl(BaseRepository<Domicilio, Long> baseRepository) {
         super(baseRepository);
-        this.domicilioRepository = domicilioRepository;
+
     }
 }

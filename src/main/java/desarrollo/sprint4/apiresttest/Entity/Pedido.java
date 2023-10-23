@@ -7,6 +7,7 @@ import desarrollo.sprint4.apiresttest.Enumeration.TipoEnvio;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,16 +22,16 @@ import java.util.List;
 public class Pedido extends BaseEntity {
 
     @Column(name = "fecha_hora_pedido")
-    private Date fechaHoraPedido;
+    private LocalDate fechaHoraPedido;
 
     @Column(name = "fecha_hora_modificacion_pedido")
-    private Date fechaHoraModificacionPedido;
+    private LocalDate fechaHoraModificacionPedido;
 
     @Column(name = "fecha_hora_baja_pedido")
-    private Date fechaHoraBajaPedido;
+    private LocalDate fechaHoraBajaPedido;
 
     @Column(name = "fecha_hora_estimada_finalizacion")
-    private Date fechaHoraEstimadaFinalizacion;
+    private LocalDate fechaHoraEstimadaFinalizacion;
 
     @Column(name = "total_precio")
     private double totalPrecio;

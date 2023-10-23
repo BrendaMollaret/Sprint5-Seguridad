@@ -3,6 +3,7 @@ package desarrollo.sprint4.apiresttest.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,13 +21,13 @@ public class Rubro extends BaseEntity {
     private String nombreRubro;
 
     @Column(name = "fecha_alta_rubro")
-    private Date fechaAltaProducto;
+    private LocalDate fechaAltaProducto;
 
     @Column(name = "fecha_baja_rubro")
-    private Date fechaBajaProducto;
+    private LocalDate fechaBajaProducto;
 
     @Column(name = "fecha_modificacion_rubro")
-    private Date fechaModificacionProducto;
+    private LocalDate fechaModificacionProducto;
 
     //Relaciones
     @ManyToOne
@@ -36,6 +37,10 @@ public class Rubro extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "rubro_id")
     @Builder.Default
-    private List<Rubro> rubros = new ArrayList<>();
+    private List<Rubro> rubroList = new ArrayList<>();
+
+    public void agregarRubro(Rubro rub){
+        rubroList.add(rub);
+    }
 
 }

@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,28 +21,28 @@ import java.util.List;
 public class Factura extends BaseEntity {
 
     @Column(name = "fecha_hora_facturacion")
-    private Date fechaHoraFacturacion;
+    private LocalDate fechaHoraFacturacion;
 
     @Column(name = "fecha_modificacion_factura")
-    private Date fechaModificacionFactura;
+    private LocalDate fechaModificacionFactura;
 
     @Column(name = "fecha_hora_baja_facturacion")
-    private Date fechaHoraBajaFacturacion;
+    private LocalDate fechaHoraBajaFacturacion;
 
     @Column(name = "descuento")
     private BigDecimal descuento;
 
     @Column(name = "mp_merchant_order_id")
-    private BigDecimal mpMerchantOrderId;
+    private String mpMerchantOrderId;
 
     @Column(name = "mp_payment_id")
-    private BigDecimal mpPaymentId;
+    private String mpPaymentId;
 
     @Column(name = "mp_payment_type")
-    private BigDecimal mpPaymentType;
+    private String mpPaymentType;
 
     @Column(name = "mp_preference_id")
-    private BigDecimal mpPreferenceId;
+    private String mpPreferenceId;
 
     @Column(name = "totalPrecioFactura")
     private BigDecimal totalPrecioFactura;
@@ -62,7 +62,10 @@ public class Factura extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "id_detalle_pedido")
-    private List<DetallePedido> detallePedidoList = new ArrayList<>();
+    private List<DetalleFactura> detalleFacturaList = new ArrayList<>();
 
+    public void agregarDetalleFactura(DetalleFactura detalleFactura){
+        detalleFacturaList.add(detalleFactura);
+    }
 
 }

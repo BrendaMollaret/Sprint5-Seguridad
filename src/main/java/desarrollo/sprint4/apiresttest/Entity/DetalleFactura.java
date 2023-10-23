@@ -1,10 +1,17 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "DetalleFactura")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DetalleFactura extends BaseEntity{
 
     @Column(name = "cantidad")
@@ -13,13 +20,13 @@ public class DetalleFactura extends BaseEntity{
     @Column(name = "subtotal")
     private BigDecimal subTotal;
 
-    //Relations
+    //Relaciones
     @ManyToOne
-    @Column(name = "id_articuloManufacturado")
+    @JoinColumn(name = "id_articuloManufacturado")
     private ArticuloManufacturado articuloManufacturado;
 
     @ManyToOne
-    @Column(name = "id_articuloInsumo")
+    @JoinColumn(name = "id_articuloInsumo")
     private ArticuloInsumo articuloInsumo;
 
 }
