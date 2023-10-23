@@ -21,12 +21,12 @@ public class UnidadMedida extends BaseEntity {
     @Column(name = "abreviatura_unidad_medida")
     private String abrevitaturaUnidadMedida;
 
-    @Column(name = "fecha_hora_alta_unidad_medida")
-    private LocalDateTime fechaHoraAltaUnidadMedida;
+    @Column(name = "fecha_alta_unidad_medida")
+    private LocalDateTime fechaAltaUnidadMedida;
 
-    @Column(name = "fecha_hora__unidad_medida")
-    private Date fechaHoraBajaUnidadMedida;
+    @Column(name = "fecha_unidad_medida")
+    private Date fechaBajaUnidadMedida;
 
-    @Column(name = "fecha_hora_modificacion_unidad_medida")
-    private Date fechaHoraModificacionUnidadMedida;
+    @Column(name = "fecha_modificacion_unidad_medida")
+    private Date fechaModificacionUnidadMedida;
 }

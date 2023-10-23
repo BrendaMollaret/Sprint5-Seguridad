@@ -13,6 +13,7 @@ public class DetalleFactura extends BaseEntity{
     @Column(name = "subtotal")
     private BigDecimal subTotal;
 
+    //Relations
     @ManyToOne
     @Column(name = "id_articuloManufacturado")
     private ArticuloManufacturado articuloManufacturado;
