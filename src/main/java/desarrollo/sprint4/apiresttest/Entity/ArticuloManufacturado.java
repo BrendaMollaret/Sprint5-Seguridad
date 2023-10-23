@@ -1,9 +1,6 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -18,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ArticuloManufacturado extends BaseEntity{
+public class ArticuloManufacturado extends BaseEntity {
 
     @Column(name = "costo")
     private BigDecimal costo;
@@ -47,12 +44,16 @@ public class ArticuloManufacturado extends BaseEntity{
     @Column(name = "fecha_Baja_Articulo_Manufacturado")
     private LocalDate fechaBajaArticuloManufacturado;
 
-    @OneToMany
-    @Column(name = "detalleArticulo_Manufacturado")
+
+    //Relaciones
+
+    @Builder.Default //Hice este cambio para que funcione
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "articulo_manufacturado_id")
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturadoList = new ArrayList<>();
 
     public void agregarDetalleArticuloManufacturado(DetalleArticuloManufacturado dam) {
         detalleArticuloManufacturadoList.add(dam);
-    }
 
+    }
 }

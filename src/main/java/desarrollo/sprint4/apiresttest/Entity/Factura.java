@@ -60,6 +60,7 @@ public class Factura extends BaseEntity {
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
+    @Builder.Default //Hice este cambio para que funcione
     @OneToMany
     @JoinColumn(name = "id_detalle_pedido")
     private List<DetalleFactura> detalleFacturaList = new ArrayList<>();
