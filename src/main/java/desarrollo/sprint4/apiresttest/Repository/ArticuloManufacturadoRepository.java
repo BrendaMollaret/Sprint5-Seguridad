@@ -30,6 +30,20 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
             Pageable pageable
     );
 
+    /*
+    @Query(
+            value =  "SELECT * FROM articulo_manufacturado am " +
+                    "JOIN categoria c ON am.categoria_id = c.id " +
+                    "WHERE c.nombre = :nombreCategoria",
+            nativeQuery = true
+    )
+    Page<ArticuloManufacturado> findByCategoriaNombre(
+            @Param("nombreCategoria") String nombreCategoria,
+            Pageable pageable
+    );
+
+     */
+
 }
 
 
