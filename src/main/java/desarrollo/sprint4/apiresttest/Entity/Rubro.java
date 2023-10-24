@@ -30,17 +30,17 @@ public class Rubro extends BaseEntity {
 
 
     //Relaciones
-    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rubro_padre")
     private Rubro rubroPadre;
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "rubro_id")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "rubroPadre", fetch = FetchType.EAGER)
     @Builder.Default
-    private List<Rubro> rubroList = new ArrayList<>();
+    private List<Rubro> rubroHijoList = new ArrayList<>();
 
-    public void agregarRubro(Rubro rub){
-        rubroList.add(rub);
+    public void agregarRubroHijo(Rubro rubro) {
+        rubroHijoList.add(rubro);
+
     }
 
 }

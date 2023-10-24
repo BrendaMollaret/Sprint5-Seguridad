@@ -25,8 +25,5 @@ public class DetalleFactura extends BaseEntity{
     @JoinColumn(name = "id_articuloManufacturado")
     private ArticuloManufacturado articuloManufacturado;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_articuloInsumo")
-    private ArticuloInsumo articuloInsumo;
 
 }

@@ -62,7 +62,7 @@ public class Factura extends BaseEntity {
 
     @Builder.Default
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_detalle_pedido")
+    @JoinColumn(name = "id_factura")
     private List<DetalleFactura> detalleFacturaList = new ArrayList<>();
 
     public void agregarDetalleFactura(DetalleFactura detalleFactura){

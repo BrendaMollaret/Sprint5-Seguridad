@@ -28,7 +28,4 @@ public class DetallePedido extends BaseEntity{
     @JoinColumn(name = "id_articulo_manufacturado")
     private ArticuloManufacturado articuloManufacturado;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_articulo_insumo")
-    private ArticuloInsumo articuloInsumo;
 }

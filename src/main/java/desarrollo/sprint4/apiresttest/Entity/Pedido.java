@@ -35,6 +35,9 @@ public class Pedido extends BaseEntity {
     @Column(name = "total_precio")
     private double totalPrecio;
 
+    @Column(name = "total_costo")
+    private double totalCosto;
+
     //Enumeration
 
     @Column(name = "tipo_envio")
