@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/articuloInsumo")
 public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo, ArticuloInsumoServiceImpl>{
+
 }
