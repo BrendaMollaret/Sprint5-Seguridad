@@ -26,7 +26,7 @@ public class ArticuloManufacturado extends BaseEntity {
     @Column(name = "nombre_Articulo_Manufacturado")
     private String nombreArticuloManufacturado;
 
-    @Column(name = "precio_Venta")
+    @Column(name = "precio_venta")
     private BigDecimal precioVenta;
 
     @Column(name = "tiempo_Estimado_Cocina")
