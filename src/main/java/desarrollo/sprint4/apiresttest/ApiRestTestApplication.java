@@ -137,19 +137,18 @@ public class ApiRestTestApplication {
             rubroFiambreria.agregarRubroHijo(rubroQueso);
 
             Rubro rubroCarne = Rubro.builder()
-                    .nombreRubro("Fiambreria")
+                    .nombreRubro("Carne")
                     .fechaAltaProducto(LocalDate.now())
                     .build();
 
             Rubro rubroVacuna = Rubro.builder()
-                    .nombreRubro("Queso")
+                    .nombreRubro("Vacuna")
                     .fechaAltaProducto(LocalDate.now())
                     .build();
 
             rubroVacuna.setRubroPadre(rubroCarne);
             rubroCarne.agregarRubroHijo(rubroVacuna);
 
-            //------------------------------------------
 
             Rubro rubroBebida = Rubro.builder()
                     .nombreRubro("Bebida")

@@ -26,7 +26,7 @@ public class Usuario extends BaseEntity{
     @Column(name = "username")
     private String username;
 
-    @Column(name = "auth0Id")
+    @Column(name = "auth0id")
     private String auth0Id;
 
     @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
