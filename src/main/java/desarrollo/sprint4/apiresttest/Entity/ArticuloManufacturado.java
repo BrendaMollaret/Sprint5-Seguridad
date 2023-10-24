@@ -54,6 +54,9 @@ public class ArticuloManufacturado extends BaseEntity {
 
     public void agregarDetalleArticuloManufacturado(DetalleArticuloManufacturado dam) {
         detalleArticuloManufacturadoList.add(dam);
-
     }
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_categoria_articulo_manufacturado")
+    private CategoriaArticuloManufacturado categoriaArticuloManufacturado;
 }

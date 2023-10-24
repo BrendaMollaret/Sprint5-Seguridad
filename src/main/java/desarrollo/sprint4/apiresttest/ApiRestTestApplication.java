@@ -202,14 +202,6 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
-            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
-            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
-            articuloInsumoMedallon.setUnidadMedida(unidadMedidaGr);
-
-            articuloInsumoLechuga.setRubro(rubroVerdura);
-            articuloInsumoCheddar.setRubro(rubroQueso);
-            articuloInsumoMedallon.setRubro(rubroVacuna);
-
 
             ArticuloInsumo articuloInsumoCocaCola = ArticuloInsumo.builder()
                     .nombreArticuloInsumo("CocaCola")
@@ -246,6 +238,13 @@ public class ApiRestTestApplication {
             articuloInsumoFanta.setRubro(rubroConGas);
             articuloInsumoAgua.setRubro(rubroSinGas);
 
+            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoMedallon.setUnidadMedida(unidadMedidaGr);
+
+            articuloInsumoLechuga.setRubro(rubroVerdura);
+            articuloInsumoCheddar.setRubro(rubroQueso);
+            articuloInsumoMedallon.setRubro(rubroVacuna);
 
 
             //----------- CREACIÓN DE UN DETALLEARTICULOMANUFACTURADO -----------
@@ -300,6 +299,30 @@ public class ApiRestTestApplication {
             detalleArticuloManufacturado7.setArticuloInsumo(articuloInsumoCheddar);
             detalleArticuloManufacturado8.setArticuloInsumo(articuloInsumoLechuga);
 
+
+            //----------- CREACIÓN CATEGORIA ARTICULO MANUFACTURADO -----------
+
+            CategoriaArticuloManufacturado categoriaArticuloManufacturadoHamburguesas = CategoriaArticuloManufacturado.builder()
+                    .codCategoriaArticuloManufacturado(1)
+                    .nombreCategoriaArticuloManufacturado("Hamburguesas")
+                    .fechaHoraAltaCategoriaArticuloManufacturado(LocalDate.now())
+                    .build();
+
+            CategoriaArticuloManufacturado categoriaArticuloManufacturadoBebidas = CategoriaArticuloManufacturado.builder()
+                    .codCategoriaArticuloManufacturado(2)
+                    .nombreCategoriaArticuloManufacturado("Bebidas")
+                    .fechaHoraAltaCategoriaArticuloManufacturado(LocalDate.now())
+                    .build();
+
+            CategoriaArticuloManufacturado categoriaArticuloManufacturadoExtras = CategoriaArticuloManufacturado.builder()
+                    .codCategoriaArticuloManufacturado(3)
+                    .nombreCategoriaArticuloManufacturado("Extras")
+                    .fechaHoraAltaCategoriaArticuloManufacturado(LocalDate.now())
+                    .build();
+
+
+
+
             //----------- CREACIÓN ARTICULO MANUFACTURADO -----------
 
             ArticuloManufacturado articuloManufacturadoHamburguesa = ArticuloManufacturado.builder()
@@ -314,6 +337,9 @@ public class ApiRestTestApplication {
 
             articuloManufacturadoHamburguesa.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado1);
             articuloManufacturadoHamburguesa.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado2);
+
+            articuloManufacturadoHamburguesa.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoHamburguesas);
+
 
             // ---------------------------------------------------------------
 
@@ -382,9 +408,18 @@ public class ApiRestTestApplication {
             articuloManufacturadoAgua.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado5);
 
             articuloManufacturadoMedallon.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado6);
+            articuloManufacturadoCheddar.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado7);
+            articuloManufacturadoLechuga.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado8);
 
-           articuloManufacturadoCheddar.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado7);
-           articuloManufacturadoLechuga.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado8);
+
+
+           articuloManufacturadoCocaCola.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
+           articuloManufacturadoFanta.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
+           articuloManufacturadoAgua.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
+
+           articuloManufacturadoMedallon.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoExtras);
+           articuloManufacturadoCheddar.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoExtras);
+           articuloManufacturadoLechuga.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoExtras);
 
             //----------- CREACIÓN DE DETALLEPEDIDO -----------
 
