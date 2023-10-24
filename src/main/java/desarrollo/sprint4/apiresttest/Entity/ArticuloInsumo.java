@@ -24,19 +24,19 @@ public class ArticuloInsumo extends BaseEntity{
     @Column(name = "fecha_hora_baja_articuloinsumo")
     private LocalDate fechaHoraBajaArticuloInsumo;
 
-    @Column(name = "nombreArticuloInsumo")
+    @Column(name = "nombre_articulo_insumo")
     private String nombreArticuloInsumo;
 
     @Column(name = "precio_compra")
     private BigDecimal precioCompra;
 
-    @Column(name = "stockActual")
+    @Column(name = "stock_actual")
     private int stockActual;
 
-    @Column(name = "stockMinimo")
+    @Column(name = "stock_minimo")
     private int stockMinimo;
 
-    @Column(name = "urlImagen")
+    @Column(name = "url_imagen")
     private String urlImagen;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)

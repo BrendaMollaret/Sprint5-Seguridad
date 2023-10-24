@@ -16,5 +16,5 @@ public interface RubroRepository extends BaseRepository<Rubro, Long>{
             value = "SELECT * FROM rubro WHERE rubro.nombre_rubro LIKE %:filtro%",
             nativeQuery = true
     )
-    List<Rubro> search(@Param("filtro") String filtro);
+    List<Rubro> searchNativa(@Param("filtro") String filtro);
 }

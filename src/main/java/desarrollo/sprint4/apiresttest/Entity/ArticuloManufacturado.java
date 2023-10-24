@@ -20,28 +20,28 @@ public class ArticuloManufacturado extends BaseEntity {
     @Column(name = "costo")
     private BigDecimal costo;
 
-    @Column(name = "descripcion_Articulo_Manufacturado")
+    @Column(name = "descripcion_articulo_manufacturado")
     private String descripcionArticuloManufacturado;
 
-    @Column(name = "nombre_Articulo_Manufacturado")
+    @Column(name = "nombre_articulo_manufacturado")
     private String nombreArticuloManufacturado;
 
-    @Column(name = "precio_Venta")
+    @Column(name = "precio_venta")
     private BigDecimal precioVenta;
 
-    @Column(name = "tiempo_Estimado_Cocina")
+    @Column(name = "tiempo_estimado_cocina")
     private int tiempoEstimadoCocina;
 
-    @Column(name = "urlImagen_AM")
+    @Column(name = "url_imagen_am")
     private String urlImagen_AM;
 
-    @Column(name = "fecha_Alta_Articulo_Manufacturado")
+    @Column(name = "fecha_alta_articulo_manufacturado")
     private LocalDate fechaAltaArticuloManufacturado;
 
-    @Column(name = "fecha_Modificacion_Articulo_Manufacturado")
+    @Column(name = "fecha_modificacion_articulo_manufacturado")
     private LocalDate fechaModificacionArticuloManufacturado;
 
-    @Column(name = "fecha_Baja_Articulo_Manufacturado")
+    @Column(name = "fecha_baja_articulo_manufacturado")
     private LocalDate fechaBajaArticuloManufacturado;
 
 
