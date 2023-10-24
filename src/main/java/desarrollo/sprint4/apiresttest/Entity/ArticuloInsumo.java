@@ -1,13 +1,10 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "articulo_insumo")

@@ -23,31 +23,7 @@ import java.time.LocalDate;
 public class ApiRestTestApplication {
 
     @Autowired
-    RubroRepository rubroRepository;
-
-    @Autowired
-    ArticuloManufacturadoRepository articuloManufacturadoRepository;
-
-    @Autowired
-    ArticuloInsumoRepository articuloInsumoRepository;
-
-    @Autowired
-    UnidadMedidaRepository unidadMedidaRepository;
-
-    @Autowired
-    LocalidadRepository localidadRepository;
-
-    @Autowired
     FacturaRepository facturaRepository;
-
-    @Autowired
-    PedidoRepository pedidoRepository;
-
-    @Autowired
-    ClienteRepository clienteRepository;
-
-    @Autowired
-    DomicilioRepository domicilioRepository;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -58,12 +34,12 @@ public class ApiRestTestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiRestTestApplication.class, args);
-        System.out.println("\n---------ESTOY FUNCIONANDO---------");
+        System.out.println("\n\n---------ESTOY FUNCIONANDO---------");
     }
 
     @Transactional
     @Bean
-    CommandLineRunner init(ClienteRepository clienteRepository) {
+    CommandLineRunner init() {
         return args -> {
 
 
