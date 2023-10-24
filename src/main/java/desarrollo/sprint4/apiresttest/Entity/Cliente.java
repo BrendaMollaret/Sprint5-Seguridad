@@ -39,16 +39,21 @@ public class Cliente extends BaseEntity{
     private LocalDate fechaHoraBajaCliente;
 
     //Relaciones
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cliente_id")
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     @Builder.Default
-    private List<Domicilio> domicilios = new ArrayList<>();
+    @JoinColumn(name = "cliente_id")
+    private List<Domicilio> domicilioList = new ArrayList<>();
 
     public void agregarDomicilio(Domicilio domi){
-        domicilios.add(domi);
+        domicilioList.add(domi);
     }
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    //Agregué para mostrar los domicilios
+    public void mostrarDomicilios(){
+        System.out.println("\n Domicilios de: " + nombre + " " + apellido + " : ");
+        for (Domicilio domicilio : domicilioList) {
+            System.out.println("\nCalle: " + domicilio.getCalle() + "\nLocalidad: " + domicilio.getLocalidad() + "\nNumero: " + domicilio.getCalle() );
+        }
+
+    }
 }

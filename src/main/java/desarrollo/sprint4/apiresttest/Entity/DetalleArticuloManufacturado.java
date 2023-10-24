@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "detalle_pedido_manufacturado")
+@Table(name = "detalle_articulo_manufacturado")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +16,7 @@ public class DetalleArticuloManufacturado extends BaseEntity{
     private int cantidad;
 
     //Relaciones
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_articulo_insumo")
     private ArticuloInsumo articuloInsumo;
 

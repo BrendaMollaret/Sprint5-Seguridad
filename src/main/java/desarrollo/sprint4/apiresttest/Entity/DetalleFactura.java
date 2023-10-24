@@ -21,11 +21,11 @@ public class DetalleFactura extends BaseEntity{
     private BigDecimal subTotal;
 
     //Relaciones
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_articuloManufacturado")
     private ArticuloManufacturado articuloManufacturado;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_articuloInsumo")
     private ArticuloInsumo articuloInsumo;
 

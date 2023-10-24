@@ -48,7 +48,7 @@ public class ArticuloManufacturado extends BaseEntity {
     //Relaciones
 
     @Builder.Default //Hice este cambio para que funcione
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "articulo_manufacturado_id")
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturadoList = new ArrayList<>();
 

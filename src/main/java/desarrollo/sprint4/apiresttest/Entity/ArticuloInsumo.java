@@ -1,6 +1,7 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -41,12 +42,14 @@ public class ArticuloInsumo extends BaseEntity{
     @Column(name = "urlImagen")
     private String urlImagen;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_unidad_medida")
+    private UnidadMedida unidadMedida;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rubro")
     private Rubro rubro;
 
-    @ManyToOne
-    @JoinColumn(name = "id_unidad_medida")
-    private UnidadMedida unidadMedida;
+
 
 }

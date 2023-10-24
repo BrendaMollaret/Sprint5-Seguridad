@@ -36,6 +36,8 @@ public class Pedido extends BaseEntity {
     @Column(name = "total_precio")
     private double totalPrecio;
 
+    //Enumeration
+
     @Column(name = "tipo_envio")
     private TipoEnvio tipoEnvio;
 
@@ -47,15 +49,15 @@ public class Pedido extends BaseEntity {
 
 
     //Relaciones
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_domicilio_entrega")
     private Domicilio domicilioEntrega;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "pedido_id")
     @Builder.Default
     private List<DetallePedido> detallesPedido = new ArrayList<>();

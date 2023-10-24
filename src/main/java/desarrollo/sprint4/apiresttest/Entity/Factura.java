@@ -56,12 +56,12 @@ public class Factura extends BaseEntity {
 
 
     //Relaciones
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
-    @Builder.Default //Hice este cambio para que funcione
-    @OneToMany
+    @Builder.Default
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_detalle_pedido")
     private List<DetalleFactura> detalleFacturaList = new ArrayList<>();
 

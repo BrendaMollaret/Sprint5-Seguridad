@@ -29,12 +29,13 @@ public class Rubro extends BaseEntity {
     @Column(name = "fecha_modificacion_rubro")
     private LocalDate fechaModificacionProducto;
 
+
     //Relaciones
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rubro_padre")
     private Rubro rubroPadre;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "rubro_id")
     @Builder.Default
     private List<Rubro> rubroList = new ArrayList<>();

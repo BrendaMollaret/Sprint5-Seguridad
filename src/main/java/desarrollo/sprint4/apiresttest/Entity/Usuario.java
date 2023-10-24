@@ -1,8 +1,6 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -31,6 +29,10 @@ public class Usuario extends BaseEntity{
 
     @Column(name = "auth0Id")
     private String auth0Id;
+
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 
 }

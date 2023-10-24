@@ -8,6 +8,8 @@ import desarrollo.sprint4.apiresttest.Enumeration.FormaPago;
 import desarrollo.sprint4.apiresttest.Enumeration.TipoFactura;
 import desarrollo.sprint4.apiresttest.Repository.*;
 
+
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,17 +37,97 @@ public class ApiRestTestApplication {
     @Autowired
     LocalidadRepository localidadRepository;
 
+    @Autowired
+    FacturaRepository facturaRepository;
+
+    @Autowired
+    PedidoRepository pedidoRepository;
+
+    @Autowired
+    ClienteRepository clienteRepository;
+
+    @Autowired
+    DomicilioRepository domicilioRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
+
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(ApiRestTestApplication.class, args);
         System.out.println("\n---------ESTOY FUNCIONANDO---------");
     }
 
-
+    @Transactional
     @Bean
     CommandLineRunner init(ClienteRepository clienteRepository) {
         return args -> {
 
+
+            //----------- CREACIÓN DE LOCALIDAD -----------
+            Localidad localidadGodoyCruz = Localidad.builder()
+                    .nombreLocalidad("Godoy cruz")
+                    .codigoPostal(5501)
+                    .build();
+
+
+            //CREACIÓN DE DOMICILIO
+            Domicilio domicilio1 = Domicilio.builder()
+                    .calle("CalleVerdadera")
+                    .nroCalle(550)
+                    .pisoDpto(0)
+                    .nroDpto(2)
+                    .fechaHoraAltaDomicilio(LocalDate.now())
+                    .build();
+
+            Domicilio domicilio2 = Domicilio.builder()
+                    .calle("CalleFalsa")
+                    .nroCalle(110)
+                    .pisoDpto(1)
+                    .nroDpto(3)
+                    .fechaHoraAltaDomicilio(LocalDate.now())
+                    .build();
+
+            domicilio1.setLocalidad(localidadGodoyCruz);
+            domicilio2.setLocalidad(localidadGodoyCruz);
+
+
+            //CREACIÓN DE CLIENTE
+            Cliente cliente1 = Cliente.builder()
+                    .nombre("Juan")
+                    .apellido("ApellidoJuan")
+                    .fechaHoraAltaCliente(LocalDate.now())
+                    .mail("juanjuanapellido@mail.com")
+                    .telefono("555-555")
+                    .build();
+
+            cliente1.agregarDomicilio(domicilio1);
+            cliente1.agregarDomicilio(domicilio2);
+
+            //CREACIÓN DE USUARIO
+            Usuario usuario1 = Usuario.builder()
+                    .username("Usuario123")
+                    .auth0Id("0987")
+                    .fechaAltaUsuario(LocalDate.now())
+                    .build();
+
+            usuario1.setCliente(cliente1);
+            usuarioRepository.save(usuario1);
+
+
+            //----------- CREACIÓN DE UNIDAD DE MEDIDA -----------
+
+            UnidadMedida unidadMedidaGr = UnidadMedida.builder()
+                    .nombreUnidadMedida("Gramos")
+                    .abrevitaturaUnidadMedida("gr")
+                    .fechaAltaUnidadMedida(LocalDate.now())
+                    .build();
+
             //----------- CREACIÓN DE RUBROS -----------
+
             Rubro rubroVerduleria = Rubro.builder()
                     .nombreRubro("Verduleria")
                     .fechaAltaProducto(LocalDate.now())
@@ -71,14 +153,6 @@ public class ApiRestTestApplication {
 
             rubroFiambreria.agregarRubro(rubroQueso);
 
-            //----------- CREACIÓN DE UNIDAD DE MEDIDA -----------
-
-            UnidadMedida unidadMedidaGr = UnidadMedida.builder()
-                    .nombreUnidadMedida("Gramos")
-                    .abrevitaturaUnidadMedida("gr")
-                    .fechaAltaUnidadMedida(LocalDate.now())
-                    .build();
-
 
             //----------- CREACIÓN ARTICULOINSUMO -----------
 
@@ -87,7 +161,7 @@ public class ApiRestTestApplication {
                     .precioCompra(BigDecimal.valueOf(45))
                     .stockMinimo(500)
                     .stockActual(800)
-                    .urlImagen("https://i.pinimg.com/564x/50/0a/49/500a4983d3d45d39d9ecf5aa41aae8cf.jpg")
+                    .urlImagen("imagenLechuga")
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
@@ -100,11 +174,12 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
+            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
+
             articuloInsumoLechuga.setRubro(rubroVerdura);
             articuloInsumoCheddar.setRubro(rubroQueso);
 
-            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
-            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
 
             //----------- CREACIÓN DE UN DETALLEARTICULOMANUFACTURADO -----------
 
@@ -136,62 +211,7 @@ public class ApiRestTestApplication {
             articuloManufacturadoHamburguesa.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado2);
 
 
-            //----------- CREACIÓN DE LOCALIDAD -----------
-            Localidad localidadGodoyCruz = Localidad.builder()
-                    .nombreLocalidad("Godoy cruz")
-                    .codigoPostal(5501)
-                    .build();
-
-            Localidad localidadLasHeras = Localidad.builder()
-                    .nombreLocalidad("Las Heras")
-                    .codigoPostal(5502)
-                    .build();
-
-            //CREACIÓN DE DOMICILIO
-            Domicilio domicilio1 = Domicilio.builder()
-                    .calle("CalleVerdadera")
-                    .nroCalle(550)
-                    .pisoDpto(0)
-                    .nroDpto(2)
-                    .fechaHoraAltaDomicilio(LocalDate.now())
-                    .build();
-
-            Domicilio domicilio2 = Domicilio.builder()
-                    .calle("CalleFalsa")
-                    .nroCalle(110)
-                    .pisoDpto(1)
-                    .nroDpto(3)
-                    .fechaHoraAltaDomicilio(LocalDate.now())
-                    .build();
-
-            domicilio1.setLocalidad(localidadGodoyCruz);
-            domicilio2.setLocalidad(localidadLasHeras);
-
-
-            //CREACIÓN DE USUARIO
-
-            Usuario usuario1 = Usuario.builder()
-                    .auth0Id("numeración")
-                    .fechaAltaUsuario(LocalDate.now())
-                    .username("Juan25")
-                    .build();
-
-
-            //CREACIÓN DE CLIENTE
-
-            Cliente cliente1 = Cliente.builder()
-                    .nombre("Juan")
-                    .apellido("ApellidoJuan")
-                    .fechaHoraAltaCliente(LocalDate.now())
-                    .mail("juanjuanapellido@mail.com")
-                    .telefono("555-555")
-                    .build();
-
-            cliente1.setUsuario(usuario1);
-            cliente1.agregarDomicilio(domicilio1);
-            cliente1.agregarDomicilio(domicilio2);
-
-            //CREACIÓN DE DETALLEPEDIDO
+            //----------- CREACIÓN DE DETALLEPEDIDO -----------
 
             DetallePedido detallePedido1 = DetallePedido.builder()
                     .cantidad(1)
@@ -199,8 +219,11 @@ public class ApiRestTestApplication {
                     .subTotalCosto(BigDecimal.valueOf(60))
                     .build();
 
+            detallePedido1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
+            detallePedido1.setArticuloInsumo(articuloInsumoCheddar);
+            detallePedido1.setArticuloInsumo(articuloInsumoLechuga);
 
-            //CREACIÓN DE PEDIDO
+            //----------- CREACIÓN DE PEDIDO -----------
 
             Pedido pedido1 = Pedido.builder()
                     .totalPrecio(800)
@@ -212,20 +235,23 @@ public class ApiRestTestApplication {
                     .build();
 
             pedido1.setCliente(cliente1);
-            pedido1.setDomicilioEntrega(cliente1.getDomicilios().get(1));
+            pedido1.setDomicilioEntrega(cliente1.getDomicilioList().get(1));
 
             pedido1.agregarDetallePedido(detallePedido1);
 
 
-            //CREACIÓN DE DETALLEFACTURA
+
+            //----------- CREACIÓN DE DETALLEFACTURA -----------
 
             DetalleFactura detalleFactura1 = DetalleFactura.builder()
                     .cantidad(1)
                     .subTotal(BigDecimal.valueOf(800))
                     .build();
 
+            detalleFactura1.setArticuloInsumo(articuloInsumoCheddar);
+            detalleFactura1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
 
-            //CREACIÓN DE FACTURA
+            //----------- CREACIÓN DE FACTURA -----------
 
             Factura factura1 = Factura.builder()
                     .fechaHoraFacturacion(LocalDate.now())
@@ -242,8 +268,7 @@ public class ApiRestTestApplication {
             factura1.setPedido(pedido1);
             factura1.agregarDetalleFactura(detalleFactura1);
 
-
-
+            facturaRepository.save(factura1);
 
         };
     }

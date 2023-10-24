@@ -20,14 +20,15 @@ public class DetallePedido extends BaseEntity{
     @Column(name = "subtotal")
     private BigDecimal subtotal;
 
+    @Column(name = "subtotalCosto")
     private BigDecimal subTotalCosto;
 
-    //Relations
-    @ManyToOne
+    //Relaciones
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_articulo_manufacturado")
     private ArticuloManufacturado articuloManufacturado;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_articulo_insumo")
     private ArticuloInsumo articuloInsumo;
 }

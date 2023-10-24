@@ -30,4 +30,5 @@ public class UnidadMedida extends BaseEntity {
 
     @Column(name = "fecha_modificacion_unidad_medida")
     private Date fechaModificacionUnidadMedida;
+
 }

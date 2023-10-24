@@ -38,7 +38,7 @@ public class Domicilio extends BaseEntity{
 
     //Relaciones
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_localidad")
     private Localidad localidad;
 }
