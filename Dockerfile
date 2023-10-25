@@ -9,6 +9,7 @@ RUN ./gradlew bootJar --no-daemon
 
 FROM openjdk:17-alpine
 EXPOSE 9000
-COPY --from=build ./build/libs/Sprint4-ApiRest-Test-0.0.1-SNAPSHOT.jar ./app.jar
+COPY --from=build ./build/libs/ApiRest-Test-0.0.1-SNAPSHOT.jar ./app.jar
+
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
