@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PedidoRepository extends BaseRepository<Pedido, Long> {
 
-
+/*
     //Para buscar el hitorial de pedidos relaizados por un cliente
     @Query("SELECT p FROM Pedido p JOIN p.cliente c WHERE c.id = :idCliente ORDER BY p.fechaPedido DESC")
     Page<Pedido> searchHistorialPedidoByCliente(
             @Param("idCliente") Long idCliente,
             Pageable pageable
-    );
+    );*/
 
 }

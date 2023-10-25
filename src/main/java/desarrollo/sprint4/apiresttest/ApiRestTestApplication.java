@@ -498,7 +498,7 @@ public class ApiRestTestApplication {
             detallePedido4.setArticuloManufacturado(articuloManufacturadoCocaCola);
 
 
-            //----- DetallePedido2 -----
+            //----- DetallePedido2 ------
 
             //Hamburguesa
             DetallePedido detallePedido2_1 = DetallePedido.builder()
