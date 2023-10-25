@@ -20,6 +20,7 @@ public interface ArticuloInsumoRepository extends BaseRepository<ArticuloInsumo,
     List<ArticuloInsumo> searchNativo(@Param("filtro") String filtro);
 
 
+    //buscar articulo insumo por su nombre
     @Query(
             value = "SELECT * FROM articulo_insumo WHERE articulo_insumo.nombre_articulo_insumo LIKE %:nombre%",
             nativeQuery = true
@@ -29,6 +30,7 @@ public interface ArticuloInsumoRepository extends BaseRepository<ArticuloInsumo,
             Pageable pageable
     );
 
+    //buscar un articulo insumo por su rubro
     @Query(value = "SELECT ai FROM ArticuloInsumo ai JOIN ai.rubro r WHERE r.nombreRubro LIKE %:nombreRubro%")
     Page<ArticuloInsumo> searchByRubroNombre(
             @Param("nombreRubro") String nombreRubro,
