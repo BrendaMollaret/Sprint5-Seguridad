@@ -29,4 +29,5 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
         }
     }
+
 }

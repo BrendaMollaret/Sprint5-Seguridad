@@ -7,8 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Repository
 public interface ArticuloInsumoRepository extends BaseRepository<ArticuloInsumo,Long>{
+
+    @Query (
+            value = "SELECT * FROM articuloInsumo WHERE articuloInsumo.nombreArticuloInsumo LIKE %:filtro% ",
+            nativeQuery = true
+    )
+    List<ArticuloInsumo> searchNativo(@Param("filtro") String filtro);
+
 
     @Query(
             value = "SELECT * FROM articulo_insumo WHERE articulo_insumo.nombre_articulo_insumo LIKE %:nombre%",
@@ -24,5 +34,6 @@ public interface ArticuloInsumoRepository extends BaseRepository<ArticuloInsumo,
             @Param("nombreRubro") String nombreRubro,
             Pageable pageable
     );
+
 
 }
