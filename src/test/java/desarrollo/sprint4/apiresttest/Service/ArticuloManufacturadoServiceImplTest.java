@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,7 @@ public class ArticuloManufacturadoServiceImplTest {
     private ArticuloManufacturadoRepository articuloManufacturadoRepository;
 
     @Autowired
-    private ArticuloManufacturadoServiceImpl articuloInsumoService;
+    private ArticuloManufacturadoServiceImpl articuloManufacturadoService;
 
     @Test
     void testSearchString() throws Exception {
@@ -32,10 +35,14 @@ public class ArticuloManufacturadoServiceImplTest {
         List<ArticuloManufacturado> listaEnviada = new ArrayList<ArticuloManufacturado>();
         listaEnviada.add(articuloManufacturado);
 
-        when(articuloManufacturadoRepository.searchNative("Hamburguesa")).thenReturn(listaEnviada);
+        // Configura el comportamiento del repositorio mock
+        when(articuloManufacturadoRepository.searchByNombre("Hamburguesa", PageRequest.of(0,1))).thenReturn(new PageImpl<>(listaEnviada));
 
+        // Llama al método de servicio y verifica el resultado
+        Page<ArticuloManufacturado> result = articuloManufacturadoService.searchByNombre("Hamburguesa", PageRequest.of(0,1));
 
-        assertEquals(listaEnviada, articuloInsumoService.search("Hamburguesa"));
+        // Verifica si el resultado coincide con lo esperado
+        assertEquals(listaEnviada, result.getContent());
 
     }
 }
