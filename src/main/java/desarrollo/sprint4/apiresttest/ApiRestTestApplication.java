@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
@@ -28,6 +27,9 @@ public class ApiRestTestApplication {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    PedidoRepository pedidoRepository;
 
 
     public static void main(String[] args) {
@@ -45,6 +47,11 @@ public class ApiRestTestApplication {
             Localidad localidadGodoyCruz = Localidad.builder()
                     .nombreLocalidad("Godoy cruz")
                     .codigoPostal(5501)
+                    .build();
+
+            Localidad localidadLasHeras = Localidad.builder()
+                    .nombreLocalidad("Las Heras")
+                    .codigoPostal(5504)
                     .build();
 
 
@@ -65,8 +72,17 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaDomicilio(LocalDate.now())
                     .build();
 
+            Domicilio domicilio3 = Domicilio.builder()
+                    .calle("CalleLH")
+                    .nroCalle(550)
+                    .pisoDpto(0)
+                    .nroDpto(2)
+                    .fechaHoraAltaDomicilio(LocalDate.now())
+                    .build();
+
             domicilio1.setLocalidad(localidadGodoyCruz);
             domicilio2.setLocalidad(localidadGodoyCruz);
+            domicilio3.setLocalidad(localidadLasHeras);
 
 
             //----------- CREACIÓN DE CLIENTE -----------
@@ -78,18 +94,39 @@ public class ApiRestTestApplication {
                     .telefono("555-555")
                     .build();
 
+            Cliente cliente2 = Cliente.builder()
+                    .nombre("Pedro")
+                    .apellido("ApellidoPedro")
+                    .fechaHoraAltaCliente(LocalDate.now())
+                    .mail("pedroapellidopedro@mail.com")
+                    .telefono("0606456")
+                    .build();
+
             cliente1.agregarDomicilio(domicilio1);
             cliente1.agregarDomicilio(domicilio2);
 
+            cliente2.agregarDomicilio(domicilio3);
+
+
             //----------- CREACIÓN DE USUARIO -----------
+
             Usuario usuario1 = Usuario.builder()
                     .username("Usuario123")
                     .auth0Id("0987")
                     .fechaAltaUsuario(LocalDate.now())
                     .build();
 
+            Usuario usuario2 = Usuario.builder()
+                    .username("Usuario456")
+                    .auth0Id("1234")
+                    .fechaAltaUsuario(LocalDate.now())
+                    .build();
+
             usuario1.setCliente(cliente1);
             usuarioRepository.save(usuario1);
+
+            usuario2.setCliente(cliente2);
+            usuarioRepository.save(usuario2);
 
 
             //----------- CREACIÓN DE UNIDAD DE MEDIDA -----------
@@ -150,6 +187,7 @@ public class ApiRestTestApplication {
             rubroCarne.agregarRubroHijo(rubroVacuna);
 
 
+
             Rubro rubroBebida = Rubro.builder()
                     .nombreRubro("Bebida")
                     .fechaAltaProducto(LocalDate.now())
@@ -184,6 +222,10 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
+            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoLechuga.setRubro(rubroVerdura);
+
+
             ArticuloInsumo articuloInsumoCheddar = ArticuloInsumo.builder()
                     .nombreArticuloInsumo("Cheddar")
                     .precioCompra(BigDecimal.valueOf(70))
@@ -192,6 +234,11 @@ public class ApiRestTestApplication {
                     .urlImagen("imagenCheddar")
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
+
+            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoCheddar.setRubro(rubroQueso);
+
+
 
             ArticuloInsumo articuloInsumoMedallon = ArticuloInsumo.builder()
                     .nombreArticuloInsumo("Medallon")
@@ -202,6 +249,9 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
+            articuloInsumoMedallon.setUnidadMedida(unidadMedidaGr);
+            articuloInsumoMedallon.setRubro(rubroVacuna);
+
 
             ArticuloInsumo articuloInsumoCocaCola = ArticuloInsumo.builder()
                     .nombreArticuloInsumo("CocaCola")
@@ -211,6 +261,7 @@ public class ApiRestTestApplication {
                     .urlImagen("imagenCoca")
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
+            articuloInsumoCocaCola.setUnidadMedida(unidadMedidaMl);
 
             ArticuloInsumo articuloInsumoFanta = ArticuloInsumo.builder()
                     .nombreArticuloInsumo("Fanta")
@@ -230,7 +281,7 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaArticuloInsumo(LocalDate.now())
                     .build();
 
-            articuloInsumoCocaCola.setUnidadMedida(unidadMedidaMl);
+
             articuloInsumoFanta.setUnidadMedida(unidadMedidaMl);
             articuloInsumoAgua.setUnidadMedida(unidadMedidaMl);
 
@@ -238,13 +289,6 @@ public class ApiRestTestApplication {
             articuloInsumoFanta.setRubro(rubroConGas);
             articuloInsumoAgua.setRubro(rubroSinGas);
 
-            articuloInsumoLechuga.setUnidadMedida(unidadMedidaGr);
-            articuloInsumoCheddar.setUnidadMedida(unidadMedidaGr);
-            articuloInsumoMedallon.setUnidadMedida(unidadMedidaGr);
-
-            articuloInsumoLechuga.setRubro(rubroVerdura);
-            articuloInsumoCheddar.setRubro(rubroQueso);
-            articuloInsumoMedallon.setRubro(rubroVacuna);
 
 
             //----------- CREACIÓN DE UN DETALLEARTICULOMANUFACTURADO -----------
@@ -260,7 +304,10 @@ public class ApiRestTestApplication {
             detalleArticuloManufacturado1.setArticuloInsumo(articuloInsumoLechuga);
             detalleArticuloManufacturado2.setArticuloInsumo(articuloInsumoCheddar);
 
-            //                     ---------------------
+            DetalleArticuloManufacturado  detalleArticuloManufacturado6 = DetalleArticuloManufacturado.builder()
+                    .cantidad(100)
+                    .build();
+
 
             DetalleArticuloManufacturado detalleArticuloManufacturado3 = DetalleArticuloManufacturado.builder()
                     .cantidad(500)
@@ -274,19 +321,11 @@ public class ApiRestTestApplication {
                     .cantidad(500)
                     .build();
 
+            detalleArticuloManufacturado6.setArticuloInsumo(articuloInsumoMedallon);
             detalleArticuloManufacturado3.setArticuloInsumo(articuloInsumoCocaCola);
             detalleArticuloManufacturado4.setArticuloInsumo(articuloInsumoFanta);
             detalleArticuloManufacturado5.setArticuloInsumo(articuloInsumoAgua);
 
-            //                   ------------------------------
-
-            DetalleArticuloManufacturado  detalleArticuloManufacturado6 = DetalleArticuloManufacturado.builder()
-                    .cantidad(100)
-                    .build();
-
-            detalleArticuloManufacturado6.setArticuloInsumo(articuloInsumoMedallon);
-
-            //                   ------------------------------
 
             DetalleArticuloManufacturado  detalleArticuloManufacturado7 = DetalleArticuloManufacturado.builder()
                     .cantidad(10)
@@ -296,6 +335,7 @@ public class ApiRestTestApplication {
                     .cantidad(10)
                     .build();
 
+            //Este es para el articuloManufacturado Cheddar y Lechuga
             detalleArticuloManufacturado7.setArticuloInsumo(articuloInsumoCheddar);
             detalleArticuloManufacturado8.setArticuloInsumo(articuloInsumoLechuga);
 
@@ -341,7 +381,6 @@ public class ApiRestTestApplication {
             articuloManufacturadoHamburguesa.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoHamburguesas);
 
 
-            // ---------------------------------------------------------------
 
             ArticuloManufacturado articuloManufacturadoCocaCola = ArticuloManufacturado.builder()
                     .nombreArticuloManufacturado("CocaCola")
@@ -373,6 +412,9 @@ public class ApiRestTestApplication {
                     .fechaAltaArticuloManufacturado(LocalDate.now())
                     .build();
 
+
+            //                     ---------------Extras-------------
+
             ArticuloManufacturado articuloManufacturadoCheddar = ArticuloManufacturado.builder()
                     .nombreArticuloManufacturado("Cheddar")
                     .descripcionArticuloManufacturado("ElCheddar")
@@ -386,8 +428,8 @@ public class ApiRestTestApplication {
             ArticuloManufacturado articuloManufacturadoLechuga = ArticuloManufacturado.builder()
                     .nombreArticuloManufacturado("Lechuga")
                     .descripcionArticuloManufacturado("LaLechuga")
-                    .costo(BigDecimal.valueOf(70))
-                    .precioVenta(BigDecimal.valueOf(100))
+                    .costo(BigDecimal.valueOf(5))
+                    .precioVenta(BigDecimal.valueOf(40))
                     .tiempoEstimadoCocina(1)
                     .urlImagen_AM("ImagenLechuga")
                     .fechaAltaArticuloManufacturado(LocalDate.now())
@@ -412,7 +454,6 @@ public class ApiRestTestApplication {
             articuloManufacturadoLechuga.agregarDetalleArticuloManufacturado(detalleArticuloManufacturado8);
 
 
-
            articuloManufacturadoCocaCola.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
            articuloManufacturadoFanta.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
            articuloManufacturadoAgua.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoBebidas);
@@ -423,19 +464,29 @@ public class ApiRestTestApplication {
 
             //----------- CREACIÓN DE DETALLEPEDIDO -----------
 
+            //hamburguesa
             DetallePedido detallePedido1 = DetallePedido.builder()
                     .cantidad(1)
                     .subtotal(BigDecimal.valueOf(800))
                     .subTotalCosto(BigDecimal.valueOf(60))
                     .build();
 
+            //medallon
             DetallePedido detallePedido2 = DetallePedido.builder()
                     .cantidad(1)
                     .subtotal(BigDecimal.valueOf(100))
                     .subTotalCosto(BigDecimal.valueOf(20))
                     .build();
 
+            //cheddar
             DetallePedido detallePedido3 = DetallePedido.builder()
+                    .cantidad(1)
+                    .subtotal(BigDecimal.valueOf(150))
+                    .subTotalCosto(BigDecimal.valueOf(45))
+                    .build();
+
+            //cocacola
+            DetallePedido detallePedido4 = DetallePedido.builder()
                     .cantidad(1)
                     .subtotal(BigDecimal.valueOf(150))
                     .subTotalCosto(BigDecimal.valueOf(45))
@@ -444,8 +495,43 @@ public class ApiRestTestApplication {
             detallePedido1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
             detallePedido2.setArticuloManufacturado(articuloManufacturadoMedallon);
             detallePedido3.setArticuloManufacturado(articuloManufacturadoCheddar);
+            detallePedido4.setArticuloManufacturado(articuloManufacturadoCocaCola);
 
 
+            //----- DetallePedido2 -----
+
+            //Hamburguesa
+            DetallePedido detallePedido2_1 = DetallePedido.builder()
+                    .cantidad(1)
+                    .subtotal(BigDecimal.valueOf(800))
+                    .subTotalCosto(BigDecimal.valueOf(60))
+                    .build();
+
+            //Lechuga
+            DetallePedido detallePedido2_2 = DetallePedido.builder()
+                    .cantidad(1)
+                    .subtotal(BigDecimal.valueOf(40))
+                    .subTotalCosto(BigDecimal.valueOf(5))
+                    .build();
+
+            //Agua
+            DetallePedido detallePedido2_3 = DetallePedido.builder()
+                    .cantidad(1)
+                    .subtotal(BigDecimal.valueOf(100))
+                    .subTotalCosto(BigDecimal.valueOf(10))
+                    .build();
+
+            //Fanta
+            DetallePedido detallePedido2_4 = DetallePedido.builder()
+                    .cantidad(1)
+                    .subtotal(BigDecimal.valueOf(150))
+                    .subTotalCosto(BigDecimal.valueOf(50))
+                    .build();
+
+            detallePedido2_1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
+            detallePedido2_2.setArticuloManufacturado(articuloManufacturadoLechuga);
+            detallePedido2_3.setArticuloManufacturado(articuloManufacturadoAgua);
+            detallePedido2_4.setArticuloManufacturado(articuloManufacturadoFanta);
 
             //----------- CREACIÓN DE PEDIDO -----------
 
@@ -456,7 +542,6 @@ public class ApiRestTestApplication {
                     .formaPago(FormaPago.MERCADO_PAGO)
                     .tipoEnvio(TipoEnvio.DELIVERY)
                     .totalCosto(125)
-                    //fechas
                     .build();
 
             pedido1.setCliente(cliente1);
@@ -465,9 +550,28 @@ public class ApiRestTestApplication {
             pedido1.agregarDetallePedido(detallePedido1);
             pedido1.agregarDetallePedido(detallePedido2);
             pedido1.agregarDetallePedido(detallePedido3);
+            pedido1.agregarDetallePedido(detallePedido4);
 
 
+/*
+            Pedido pedido2 = Pedido.builder()
+                    .totalPrecio(1090)
+                    .totalCosto(125)
+                    .fechaHoraPedido(LocalDate.now())
+                    .estadoPedido(EstadoPedido.PAGADO)
+                    .formaPago(FormaPago.EFECTIVO)
+                    .tipoEnvio(TipoEnvio.RETIRO_LOCAL)
+                    .build();
 
+            pedido2.setCliente(cliente2);
+            pedido1.setDomicilioEntrega(cliente2.getDomicilioList().get(0));
+
+            pedido2.agregarDetallePedido(detallePedido2_1);
+            pedido2.agregarDetallePedido(detallePedido2_2);
+            pedido2.agregarDetallePedido(detallePedido2_3);
+            pedido2.agregarDetallePedido(detallePedido2_4);
+
+*/
             //----------- CREACIÓN DE DETALLEFACTURA -----------
 
             DetalleFactura detalleFactura1 = DetalleFactura.builder()
@@ -485,11 +589,44 @@ public class ApiRestTestApplication {
                     .subTotal(BigDecimal.valueOf(150))
                     .build();
 
+            DetalleFactura detalleFactura4 = DetalleFactura.builder()
+                    .cantidad(1)
+                    .subTotal(BigDecimal.valueOf(150))
+                    .build();
+
 
             detalleFactura1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
             detalleFactura2.setArticuloManufacturado(articuloManufacturadoMedallon);
             detalleFactura3.setArticuloManufacturado(articuloManufacturadoCheddar);
+            detalleFactura4.setArticuloManufacturado(articuloManufacturadoCocaCola);
 
+            //----- DetalleFactura2 -----
+        /*
+            DetalleFactura detalleFactura2_1 = DetalleFactura.builder()
+                    .cantidad(1)
+                    .subTotal(BigDecimal.valueOf(800))
+                    .build();
+
+            DetalleFactura detalleFactura2_2 = DetalleFactura.builder()
+                    .cantidad(1)
+                    .subTotal(BigDecimal.valueOf(40))
+                    .build();
+
+            DetalleFactura detalleFactura2_3 = DetalleFactura.builder()
+                    .cantidad(1)
+                    .subTotal(BigDecimal.valueOf(100))
+                    .build();
+
+            DetalleFactura detalleFactura2_4 = DetalleFactura.builder()
+                    .cantidad(1)
+                    .subTotal(BigDecimal.valueOf(150))
+                    .build();
+
+            detalleFactura2_1.setArticuloManufacturado(articuloManufacturadoHamburguesa);
+            detalleFactura2_2.setArticuloManufacturado(articuloManufacturadoLechuga);
+            detalleFactura2_3.setArticuloManufacturado(articuloManufacturadoAgua);
+            detalleFactura2_4.setArticuloManufacturado(articuloManufacturadoFanta);
+        */
             //----------- CREACIÓN DE FACTURA -----------
 
             Factura factura1 = Factura.builder()
@@ -508,10 +645,32 @@ public class ApiRestTestApplication {
             factura1.agregarDetalleFactura(detalleFactura1);
             factura1.agregarDetalleFactura(detalleFactura2);
             factura1.agregarDetalleFactura(detalleFactura3);
-
+            factura1.agregarDetalleFactura(detalleFactura4);
 
             facturaRepository.save(factura1);
 
+            //----- factura2 -----
+/*
+            Factura factura2 = Factura.builder()
+                    .fechaHoraFacturacion(LocalDate.now())
+                    .descuento(BigDecimal.valueOf(109))
+                    .totalPrecioFactura(BigDecimal.valueOf(981))
+                    .formaPago(FormaPago.EFECTIVO)
+                    .tipoFactura(TipoFactura.C)
+                    .mpMerchantOrderId("H1")
+                    .mpPaymentId("I2")
+                    .mpPaymentType("J3")
+                    .mpPreferenceId("K4")
+                    .build();
+
+            factura2.setPedido(pedido2);
+            factura2.agregarDetalleFactura(detalleFactura2_1);
+            factura2.agregarDetalleFactura(detalleFactura2_2);
+            factura2.agregarDetalleFactura(detalleFactura2_3);
+            factura2.agregarDetalleFactura(detalleFactura2_4);
+
+            facturaRepository.save(factura2);
+*/
         };
     }
 }
