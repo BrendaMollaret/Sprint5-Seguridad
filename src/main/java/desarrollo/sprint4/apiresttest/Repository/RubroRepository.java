@@ -11,7 +11,7 @@ import java.util.List;
 public interface RubroRepository extends BaseRepository<Rubro, Long>{
 
 
-    //Buscar un rubro particular
+    //Buscar un rubro particular.
     @Query(
             value = "SELECT * FROM rubro WHERE rubro.nombre_rubro LIKE %:filtro%",
             nativeQuery = true
