@@ -1,5 +1,7 @@
 package desarrollo.sprint4.apiresttest.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,10 +34,12 @@ public class Rubro extends BaseEntity {
     //Relaciones
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rubro_padre")
+    @JsonBackReference // Usar esta anotación para evitar la recursión infinita al serializar
     private Rubro rubroPadre;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "rubroPadre", fetch = FetchType.EAGER)
     @Builder.Default
+    @JsonManagedReference // Usar esta anotación para evitar la recursión infinita al serializar
     private List<Rubro> rubroHijoList = new ArrayList<>();
 
     public void agregarRubroHijo(Rubro rubro) {
