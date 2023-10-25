@@ -44,4 +44,28 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
         }
     }
 
+    @Override
+    public Page<ArticuloManufacturado> searchByPrecioVentaRange(BigDecimal precioMinimo, BigDecimal precioMaximo, Pageable pageable) throws Exception {
+        try {
+
+            Page<ArticuloManufacturado> articuloManufacturados = articuloManufacturadoRepository.searchByPrecioVentaRange(precioMinimo, precioMaximo, pageable);
+
+            return articuloManufacturados;
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public Page<ArticuloManufacturado> searchByCategoriaNombre(String nombreCategoria, Pageable pageable) throws Exception {
+        try {
+
+            Page<ArticuloManufacturado> articuloManufacturados = articuloManufacturadoRepository.searchByCategoriaNombre(nombreCategoria, pageable);
+
+            return articuloManufacturados;
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

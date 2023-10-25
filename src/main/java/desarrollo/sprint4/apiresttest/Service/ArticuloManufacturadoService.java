@@ -13,9 +13,8 @@ public interface ArticuloManufacturadoService extends BaseService<ArticuloManufa
 
     Page<ArticuloManufacturado> searchByPrecioVenta(BigDecimal precioVenta, Pageable pageable) throws Exception;
 
+    Page<ArticuloManufacturado> searchByPrecioVentaRange(BigDecimal precioMinimo, BigDecimal precioMaximo, Pageable pageable) throws Exception;
 
-    /*Page<ArticuloManufacturado> findByCategoriaNombre(
-            @Param("nombreCategoria") String nombreCategoria, Pageable pageable);
+    Page<ArticuloManufacturado> searchByCategoriaNombre(String nombreCategoria, Pageable pageable) throws Exception;
 
-     */
 }

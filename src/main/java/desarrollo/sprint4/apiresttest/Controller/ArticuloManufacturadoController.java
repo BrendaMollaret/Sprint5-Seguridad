@@ -35,4 +35,22 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
         }
     }
 
+    @GetMapping("/searchByPrecioVentaRange")
+    public ResponseEntity<?> searchByPrecioVentaRange(@RequestParam BigDecimal precioMinimo, @RequestParam BigDecimal precioMaximo, Pageable pageable) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.searchByPrecioVentaRange(precioMinimo, precioMaximo, pageable));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+        }
+    }
+
+    @GetMapping("/searchByCategoriaNombre")
+    public ResponseEntity<?> searchByCategoriaNombre(@RequestParam String nombreCategoria, Pageable pageable) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.searchByCategoriaNombre(nombreCategoria, pageable));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+        }
+    }
+
 }

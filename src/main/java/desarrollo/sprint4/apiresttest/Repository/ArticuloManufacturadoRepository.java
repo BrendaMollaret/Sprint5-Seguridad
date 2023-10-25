@@ -22,7 +22,7 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
     );
 
     @Query(
-            value = "SELECT * FROM articulo_manufacturado WHERE articulo_manufacturado.precio_venta = :precioVenta",
+            value = "SELECT * FROM articulo_manufacturado WHERE articulo_manufacturado.precio_venta LIKE %:precioVenta%",
             nativeQuery = true
     )
     Page<ArticuloManufacturado> searchByPrecioVenta(
@@ -30,19 +30,23 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
             Pageable pageable
     );
 
-    /*
     @Query(
-            value =  "SELECT * FROM articulo_manufacturado am " +
-                    "JOIN categoria c ON am.categoria_id = c.id " +
-                    "WHERE c.nombre = :nombreCategoria",
+            value = "SELECT * FROM articulo_manufacturado " +
+                    "WHERE articulo_manufacturado.precio_venta BETWEEN :precioMinimo AND :precioMaximo",
             nativeQuery = true
     )
-    Page<ArticuloManufacturado> findByCategoriaNombre(
+    Page<ArticuloManufacturado> searchByPrecioVentaRange(
+            @Param("precioMinimo") BigDecimal precioMinimo,
+            @Param("precioMaximo") BigDecimal precioMaximo,
+            Pageable pageable
+    );
+
+    @Query(value = "SELECT am FROM ArticuloManufacturado am JOIN am.categoriaArticuloManufacturado c WHERE c.nombreCategoriaArticuloManufacturado LIKE %:nombreCategoria%")
+    Page<ArticuloManufacturado> searchByCategoriaNombre(
             @Param("nombreCategoria") String nombreCategoria,
             Pageable pageable
     );
 
-     */
 
 }
 
