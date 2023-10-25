@@ -26,3 +26,9 @@ Por otro lado para probar el comportamiento de la Api Rest se deberá crear toda
   - Configuración correcta de dependencias en Gradle ✓
   - Postman ✓ [Sprint4-ApiRest-Test.postman_collection.json](https://github.com/BrendaMollaret/Sprint4-ApiRest-Test/files/13168542/Sprint4-ApiRest-Test.postman_collection.json)
   - Crear los test unitarios correspondientes a las entidades principales ✓
+
+---
+
+### Diagrama de clases
+
+![diagramadeclases-V10](https://github.com/BrendaMollaret/Sprint4-ApiRest-Test/assets/89263107/89b503aa-1ffa-4c6d-8e88-cf263abf1a0e)
