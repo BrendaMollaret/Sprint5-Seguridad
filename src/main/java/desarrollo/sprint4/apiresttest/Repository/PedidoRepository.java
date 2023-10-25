@@ -13,14 +13,14 @@ import java.time.LocalDate;
 @Repository
 public interface PedidoRepository extends BaseRepository<Pedido, Long> {
 
-/*
+
     //Para buscar el hitorial de pedidos relaizados por un cliente
     //Busco los pedidos y los ordeno desde el mas recente al mas antiguo
     @Query("SELECT p FROM Pedido p JOIN p.cliente c WHERE c.id = :idCliente ORDER BY p.fechaHoraPedido DESC")
     Page<Pedido> searchHistorialPedidoByCliente(
             @Param("idCliente") Long idCliente,
             Pageable pageable
-    );*/
+    );
 
 
     //Para buscar los pedidos relacionados a un cliente dentro de un rango determinado
