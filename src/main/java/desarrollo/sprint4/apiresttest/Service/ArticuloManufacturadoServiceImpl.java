@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloManufacturado,Long> implements ArticuloManufacturadoService{
@@ -64,6 +65,16 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
 
             return articuloManufacturados;
         } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ArticuloManufacturado> search(String filtro) throws Exception {
+        try {
+            List<ArticuloManufacturado> articuloManufacturados = articuloManufacturadoRepository.search(filtro);
+            return articuloManufacturados;
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }

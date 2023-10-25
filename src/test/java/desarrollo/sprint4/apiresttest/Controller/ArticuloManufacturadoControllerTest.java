@@ -37,13 +37,13 @@ public class ArticuloManufacturadoControllerTest {
             List<ArticuloManufacturado> listaEnviada = new ArrayList();
             listaEnviada.add(articuloManufacturado);
 
-            when(articuloManufacturadoService.searchByNombre("Hamburguesa", PageRequest.of(0, 1))).thenReturn(new PageImpl<>(listaEnviada));
+            when(articuloManufacturadoService.search("Hamburguesa")).thenReturn(listaEnviada);
 
             // simula una  request por postman, el formato es el mismo
-            mockMvc.perform(get("api/v1/articuloManufacturado/search")
+            mockMvc.perform(get("/api/v1/articuloManufacturado/search")
                             .param("filtro", "Hamburguesa")
                             .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk()) //status 200
-                    .andExpect(jsonPath("$[0].nombreArticuloManufacturado", is("Hamburguesa")));
+                            .andExpect(status().isOk()) //status 200
+                            .andExpect(jsonPath("$[0].nombreArticuloManufacturado", is("Hamburguesa")));
         }
 }

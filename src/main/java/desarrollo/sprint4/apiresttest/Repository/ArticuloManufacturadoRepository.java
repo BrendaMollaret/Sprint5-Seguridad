@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public interface ArticuloManufacturadoRepository extends BaseRepository<ArticuloManufacturado,Long>{
@@ -20,6 +21,14 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
     Page<ArticuloManufacturado> searchByNombre(
             @Param("filtro") String filtro,
             Pageable pageable
+    );
+
+    @Query(
+            value = "SELECT * FROM articulo_manufacturado WHERE articulo_manufacturado.nombre_articulo_manufacturado LIKE %:filtro%",
+            nativeQuery = true
+    )
+    List<ArticuloManufacturado> search(
+            @Param("filtro") String filtro
     );
 
     @Query(

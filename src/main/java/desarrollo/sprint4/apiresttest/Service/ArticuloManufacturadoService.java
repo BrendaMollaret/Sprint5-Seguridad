@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface ArticuloManufacturadoService extends BaseService<ArticuloManufacturado, Long>{
 
@@ -17,4 +18,5 @@ public interface ArticuloManufacturadoService extends BaseService<ArticuloManufa
 
     Page<ArticuloManufacturado> searchByCategoriaNombre(String nombreCategoria, Pageable pageable) throws Exception;
 
+    List<ArticuloManufacturado> search(String filtro) throws Exception;
 }
