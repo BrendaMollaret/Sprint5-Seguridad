@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Repository
 public interface ArticuloManufacturadoRepository extends BaseRepository<ArticuloManufacturado,Long>{
 
+    //query
     @Query(
             value = "SELECT * FROM articulo_manufacturado WHERE articulo_manufacturado.nombre_articulo_manufacturado LIKE %:filtro%",
             nativeQuery = true
