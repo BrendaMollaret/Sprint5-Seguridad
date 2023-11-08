@@ -22,13 +22,13 @@ public class Rubro extends BaseEntity {
     private String nombreRubro;
 
     @Column(name = "fecha_alta_rubro")
-    private LocalDate fechaAltaProducto;
+    private LocalDate fechaAltaRubro;
 
     @Column(name = "fecha_baja_rubro")
-    private LocalDate fechaBajaProducto;
+    private LocalDate fechaBajaRubro;
 
     @Column(name = "fecha_modificacion_rubro")
-    private LocalDate fechaModificacionProducto;
+    private LocalDate fechaModificacionRubro;
 
 
     //Relaciones
