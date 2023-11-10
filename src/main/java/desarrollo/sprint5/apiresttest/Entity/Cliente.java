@@ -1,5 +1,6 @@
 package desarrollo.sprint5.apiresttest.Entity;
 
+import desarrollo.sprint5.apiresttest.Enumeration.EstadoCliente;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +37,9 @@ public class Cliente extends BaseEntity{
 
     @Column(name = "fecha_hora_baja_cliente")
     private LocalDate fechaHoraBajaCliente;
+
+    @Column(name = "estado_cliente")
+    private EstadoCliente estadoCliente;
 
     //Relaciones
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)

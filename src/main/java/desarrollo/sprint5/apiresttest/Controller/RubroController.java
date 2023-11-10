@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/v1/rubro")
 public class RubroController extends BaseControllerImpl<Rubro, RubroServiceImpl> {
 
-    @GetMapping("/search")
-    public ResponseEntity<?> search(@RequestParam String filtro){
+    @GetMapping("/searchByNombre")
+    public ResponseEntity<?> searchByNombre(@RequestParam String filtro){
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(servicio.search(filtro));
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.searchByNombre(filtro));
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\":\"" + e.getMessage() + "\"}"));
         }

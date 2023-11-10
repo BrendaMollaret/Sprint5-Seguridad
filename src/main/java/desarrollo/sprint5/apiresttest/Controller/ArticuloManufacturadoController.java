@@ -26,7 +26,7 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
         }
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search") //CREO QUE LA BUSQUEDA ESTA DUPLICADA o_0
     public ResponseEntity<?> search(@RequestParam String filtro) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(servicio.search(filtro));

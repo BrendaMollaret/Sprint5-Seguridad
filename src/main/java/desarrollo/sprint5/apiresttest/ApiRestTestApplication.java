@@ -385,7 +385,6 @@ public class ApiRestTestApplication {
             articuloManufacturadoHamburguesa.setCategoriaArticuloManufacturado(categoriaArticuloManufacturadoHamburguesas);
 
 
-
             ArticuloManufacturado articuloManufacturadoCocaCola = ArticuloManufacturado.builder()
                     .nombreArticuloManufacturado("CocaCola")
                     .descripcionArticuloManufacturado("lacoca")

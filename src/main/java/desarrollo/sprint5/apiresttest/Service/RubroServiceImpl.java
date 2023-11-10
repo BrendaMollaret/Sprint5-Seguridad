@@ -19,9 +19,9 @@ public class RubroServiceImpl extends BaseServiceImpl<Rubro, Long> implements Ru
     }
 
     @Override
-    public List<Rubro> search(String filtro) throws Exception {
+    public List<Rubro> searchByNombre(String filtro) throws Exception {
         try {
-            List<Rubro> rubros = rubroRepository.searchNativa(filtro);
+            List<Rubro> rubros = rubroRepository.searchByNombre(filtro);
             return rubros;
         } catch (Exception e) {
             throw new Exception(e.getMessage());

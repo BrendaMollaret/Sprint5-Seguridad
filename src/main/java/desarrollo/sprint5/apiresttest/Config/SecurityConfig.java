@@ -29,22 +29,35 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest ->
                                 authRequest
+                                        //Rutas publicas:
+                                        .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() //Autenticacion
 
-                                        .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() // Rutas públicas
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloInsumo/paged")).permitAll() //de articuloInsumo
+                                        .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByNombre")).permitAll()
+                                        .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByRubroNombre")).permitAll()
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloManufacturado/paged")).permitAll() //de articuloManufactura
+                                        .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByNombre")).permitAll()
+                                        .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByPrecioVentaRange")).permitAll()
+                                        .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByCategoriaNombre")).permitAll()
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/paged")).permitAll() //de rubro
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/searchByNombre")).permitAll()
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/CategoriaArticuloManufacturado/paged")).permitAll() //de categoriaArticuloManufacturado
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/Localidad/paged")).permitAll() //de Localidad
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/UnidadMedida/paged")).permitAll() //de UnidadMedida
+
+                                        //Consola H2:
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/demoAdmin/**")).hasAuthority("ADMIN")
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/demoUser/**")).hasAuthority("CLIENTE")
 
-                                        /*
-                                        .requestMatchers("/auth/**").permitAll() //hay que agregar las rutas publicas permitidas para usuarios no logueados
-                                        .requestMatchers(PathRequest.toH2Console()).permitAll()
-                                        //.requestMatchers("/api/v1/demoAdmin/**").hasAuthority("ADMIN")
-                                        //.requestMatchers("/api/v1/demoUser/**").hasAuthority("USER")
-                                        */
+                                        //Autorizacion de acceso a la url:
+                                        //.requestMatchers(new AntPathRequestMatcher("/api/v1/demoAdmin/**")).hasAuthority("ADMIN")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/{id}")).hasAuthority("CLIENTE") //update con PUT
 
-
-
-                        //.anyRequest().authenticated()
+                                        //.anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)) //H2
                 .sessionManagement(sessionManager->

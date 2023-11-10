@@ -20,9 +20,6 @@ import java.util.List;
 @Builder
 public class Usuario extends BaseEntity implements UserDetails {
 
-    //@Column(name = "auth0id")
-    //private String auth0Id;
-
     @Column(name = "username", nullable = false)
     private String username;
 

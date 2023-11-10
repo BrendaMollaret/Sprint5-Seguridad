@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface RubroService extends BaseService<Rubro, Long>{
 
-    List<Rubro> search(String filtro) throws Exception;
+    List<Rubro> searchByNombre(String filtro) throws Exception;
 }
