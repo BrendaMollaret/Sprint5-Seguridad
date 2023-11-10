@@ -31,4 +31,4 @@ Por otro lado para probar el comportamiento de la Api Rest se deberá crear toda
 
 ### Diagrama de clases
 
-![diagramadeclases-V10](https://github.com/BrendaMollaret/Sprint5-Seguridad/blob/main/diagramadeclases-V12.jpg)
+![diagramadeclases-V10](https://github.com/BrendaMollaret/Sprint5-Seguridad/blob/main/diagramadeclases-V13.jpg?raw=true)
