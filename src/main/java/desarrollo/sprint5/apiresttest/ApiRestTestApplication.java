@@ -1,15 +1,12 @@
 package desarrollo.sprint5.apiresttest;
 
 
-import desarrollo.sprint4.apiresttest.Entity.*;
+import desarrollo.sprint5.apiresttest.Entity.*;
 import desarrollo.sprint5.apiresttest.Enumeration.EstadoPedido;
 import desarrollo.sprint5.apiresttest.Enumeration.TipoEnvio;
 import desarrollo.sprint5.apiresttest.Enumeration.FormaPago;
 import desarrollo.sprint5.apiresttest.Enumeration.TipoFactura;
-import desarrollo.sprint4.apiresttest.Repository.*;
 
-
-import desarrollo.sprint5.apiresttest.Entity.*;
 import desarrollo.sprint5.apiresttest.Repository.FacturaRepository;
 import desarrollo.sprint5.apiresttest.Repository.PedidoRepository;
 import desarrollo.sprint5.apiresttest.Repository.UsuarioRepository;
