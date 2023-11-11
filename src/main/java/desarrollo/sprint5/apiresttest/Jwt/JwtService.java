@@ -70,4 +70,11 @@ public class JwtService {
         return getExpiration(token).before(new Date());
     }
 
+    //Agregado para extraer id del cliente
+    public Long getIdClienteFromToken(String token) {
+        Claims claims = getAllClaims(token);
+        Long idCliente = claims.get("idCliente", Long.class); // Reemplaza "idCliente" con la clave real en el token que contiene el ID del cliente.
+        return idCliente;
+    }
+
 }

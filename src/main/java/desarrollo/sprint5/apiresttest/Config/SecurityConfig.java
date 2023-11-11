@@ -55,7 +55,10 @@ public class SecurityConfig {
 
                                         //Autorizacion de acceso a la url:
                                         //.requestMatchers(new AntPathRequestMatcher("/api/v1/demoAdmin/**")).hasAuthority("ADMIN")
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/{id}")).hasAuthority("CLIENTE") //update con PUT
+
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/searchById")).hasAuthority("CLIENTE") //get perfil
+                                        //.requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/searchById")).permitAll() //get perfil
+
 
                                         //.anyRequest().authenticated()
                 )
