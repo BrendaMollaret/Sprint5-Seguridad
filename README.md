@@ -1,4 +1,4 @@
-﻿# Sprint4-ApiRest-Test
+﻿# Sprint5-Seguridad
 
 ## El buen sabor
 ---
@@ -24,7 +24,7 @@ Por otro lado para probar el comportamiento de la Api Rest se deberá crear toda
   - Tablas creadas en la base de datos ✓ 
   - Paquetes de Controladores, Servicios y repositorios ✓
   - Configuración correcta de dependencias en Gradle ✓
-  - Postman ✓ [Sprint4-ApiRest-Test.postman_collection.json](https://github.com/BrendaMollaret/Sprint4-ApiRest-Test/files/13168542/Sprint4-ApiRest-Test.postman_collection.json)
+  - Postman x
   - Crear los test unitarios correspondientes a las entidades principales ✓
 
 ---
