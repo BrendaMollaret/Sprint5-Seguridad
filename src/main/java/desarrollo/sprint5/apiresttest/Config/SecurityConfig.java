@@ -31,36 +31,27 @@ public class SecurityConfig {
                                 authRequest
                                         //Rutas publicas:
                                         .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() //Autenticacion
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloInsumo/paged")).permitAll() //de articuloInsumo
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByNombre")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByRubroNombre")).permitAll()
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloManufacturado/paged")).permitAll() //de articuloManufactura
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByNombre")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByPrecioVentaRange")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByCategoriaNombre")).permitAll()
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/paged")).permitAll() //de rubro
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/searchByNombre")).permitAll()
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/CategoriaArticuloManufacturado/paged")).permitAll() //de categoriaArticuloManufacturado
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/Localidad/paged")).permitAll() //de Localidad
-
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/UnidadMedida/paged")).permitAll() //de UnidadMedida
 
                                         //Consola H2:
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
 
-                                        //Autorizacion de acceso a la url:
-                                        //.requestMatchers(new AntPathRequestMatcher("/api/v1/demoAdmin/**")).hasAuthority("ADMIN")
-
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/searchById")).hasAuthority("CLIENTE") //get perfil
-                                        //.requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/searchById")).permitAll() //get perfil
+                                        //Segun el rol
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/showProfile")).hasAnyAuthority("CLIENTE", "CAJERO")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/updateCliente")).hasAnyAuthority("CLIENTE", "CAJERO")
 
 
-                                        //.anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)) //H2
                 .sessionManagement(sessionManager->

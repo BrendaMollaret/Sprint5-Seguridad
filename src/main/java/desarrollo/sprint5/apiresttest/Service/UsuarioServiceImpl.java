@@ -14,4 +14,16 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements
     public UsuarioServiceImpl(BaseRepository<Usuario, Long> baseRepository) {
         super(baseRepository);
     }
+
+    @Override
+    public Usuario findUserByUsername(String username) throws Exception{
+        try {
+            Usuario usuario = usuarioRepository.findUserByUsername(username);
+            return usuario;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
 }
