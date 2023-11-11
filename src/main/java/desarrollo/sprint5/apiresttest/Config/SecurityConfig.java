@@ -30,7 +30,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                                 authRequest
                                         //Rutas publicas:
-                                        .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() //Autenticacion
+                                        .requestMatchers(new AntPathRequestMatcher("/auth/register")).permitAll() //Registro Cliente
+                                        .requestMatchers(new AntPathRequestMatcher("/auth/login")).permitAll() //Login general
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloInsumo/paged")).permitAll() //de articuloInsumo
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByNombre")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloInsumo/searchByRubroNombre")).permitAll()
@@ -48,8 +49,10 @@ public class SecurityConfig {
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
 
                                         //Segun el rol
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/showProfile")).hasAnyAuthority("CLIENTE", "CAJERO")
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/updateCliente")).hasAnyAuthority("CLIENTE", "CAJERO")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/showProfile")).hasAnyAuthority( "CLIENTE", "CAJERO", "COCINERO","DELIVERY")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/updateCliente")).hasAnyAuthority("CLIENTE", "CAJERO", "COCINERO","DELIVERY")
+
+                                        .requestMatchers(new AntPathRequestMatcher("/auth/registerEmployee")).hasAuthority("ADMIN") //Autenticacion
 
 
                 )

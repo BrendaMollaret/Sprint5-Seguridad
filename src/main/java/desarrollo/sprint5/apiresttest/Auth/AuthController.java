@@ -26,4 +26,10 @@ public class AuthController {
     {
         return ResponseEntity.ok(authService.register(request));
     }
+
+    @PostMapping(value = "registerEmployee")
+    public ResponseEntity<AuthResponse> registerEmployee(@RequestBody RegisterEmployeeRequest request)
+    {
+        return ResponseEntity.ok(authService.registerEmployee(request));
+    }
 }

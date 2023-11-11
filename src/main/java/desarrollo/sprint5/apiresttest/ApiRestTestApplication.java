@@ -2,11 +2,9 @@ package desarrollo.sprint5.apiresttest;
 
 
 import desarrollo.sprint5.apiresttest.Entity.*;
-import desarrollo.sprint5.apiresttest.Enumeration.EstadoPedido;
-import desarrollo.sprint5.apiresttest.Enumeration.TipoEnvio;
-import desarrollo.sprint5.apiresttest.Enumeration.FormaPago;
-import desarrollo.sprint5.apiresttest.Enumeration.TipoFactura;
+import desarrollo.sprint5.apiresttest.Enumeration.*;
 
+import desarrollo.sprint5.apiresttest.Jwt.JwtService;
 import desarrollo.sprint5.apiresttest.Repository.FacturaRepository;
 import desarrollo.sprint5.apiresttest.Repository.PedidoRepository;
 import desarrollo.sprint5.apiresttest.Repository.UsuarioRepository;
@@ -16,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -32,6 +31,8 @@ public class ApiRestTestApplication {
     @Autowired
     PedidoRepository pedidoRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(ApiRestTestApplication.class, args);
@@ -111,6 +112,14 @@ public class ApiRestTestApplication {
 
             //----------- CREACIÓN DE USUARIO -----------
 
+            Usuario admin = Usuario.builder()
+                    .username("admin")
+                    .password(passwordEncoder.encode("admin"))
+                    .fechaAltaUsuario(LocalDate.now())
+                    .role(Role.ADMIN)
+                    .build();
+
+            usuarioRepository.save(admin);
 
             Usuario usuario1 = Usuario.builder()
                     .username("Usuario123")

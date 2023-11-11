@@ -15,4 +15,14 @@ public class LocalidadServiceImpl  extends BaseServiceImpl<Localidad, Long> impl
     public LocalidadServiceImpl(BaseRepository<Localidad, Long> baseRepository) {
         super(baseRepository);
     }
+
+    @Override
+    public Localidad searchById(Long idLocalidad) throws Exception {
+        try {
+            Localidad localidad = localidadRepository.searchById(idLocalidad);
+            return localidad;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }
