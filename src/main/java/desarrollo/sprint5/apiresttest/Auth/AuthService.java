@@ -106,10 +106,8 @@ public class AuthService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.provisionalPassword))
                 .fechaAltaUsuario(LocalDate.now())
-                .role(fromString(request.getRole()))
+                .role(Role.fromValorNumerico(request.getIdRole())) //ver numeracion de roles
                 .build();
-
-        System.out.println(fromString(request.getRole()));
 
         user.setCliente(cliente);
         usuarioRepository.save(user);
@@ -118,16 +116,6 @@ public class AuthService {
                 .token(jwtService.getToken(user))
                 .build();
 
-    }
-
-    //Para encontrar el rol del empleado
-    public static Role fromString(String roleName) {
-        for (Role role : Role.values()) {
-            if (role.name().equalsIgnoreCase(roleName)) {
-                return role;
-            }
-        }
-        return null; // Retorna null si no se encuentra un rol coincidente
     }
 
 }

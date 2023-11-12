@@ -44,7 +44,7 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             // Extrae el username del usuario del token JWT utilizando tu servicio JwtService.
             String username = jwtService.getUsernameFromToken(jwtToken);
             Cliente cliente = clienteRepository.findClienteByUsername(username);
-            System.out.println("!!!!!!!!USERNAME USADO: "+username);
+            //System.out.println("!!!!!!!!USERNAME USADO: "+username);
 
             ModelMapper modelMapper = new ModelMapper();
             ClienteDTO clienteDTO = modelMapper.map(cliente, ClienteDTO.class);

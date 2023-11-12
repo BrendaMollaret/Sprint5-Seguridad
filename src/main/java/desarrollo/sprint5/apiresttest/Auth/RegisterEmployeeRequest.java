@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class RegisterEmployeeRequest {
     String username;
     String provisionalPassword;
-    String role;
+    int idRole;
 
     String nombre;
     String apellido;

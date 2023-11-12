@@ -25,7 +25,6 @@ public class ClienteController extends BaseControllerImpl<Cliente, ClienteServic
     @GetMapping("/showProfile")
     public ResponseEntity<?> showProfile(@RequestHeader(name = "Authorization") String token) {
         try {
-            //ClienteDTO cliente = servicio.showProfile(token);
             return ResponseEntity.status(HttpStatus.OK).body(servicio.showProfile(token));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));

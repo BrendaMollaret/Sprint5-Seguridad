@@ -39,6 +39,7 @@ public class SecurityConfig {
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByNombre")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByPrecioVentaRange")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("api/v1/articuloManufacturado/searchByCategoriaNombre")).permitAll()
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/DetalleProductoManufacturado/paged")).permitAll() //de DetalleProductoManufacturado
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/paged")).permitAll() //de rubro
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/rubro/searchByNombre")).permitAll()
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/CategoriaArticuloManufacturado/paged")).permitAll() //de categoriaArticuloManufacturado
