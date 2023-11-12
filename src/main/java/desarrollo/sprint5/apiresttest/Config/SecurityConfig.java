@@ -46,6 +46,9 @@ public class SecurityConfig {
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/Localidad/paged")).permitAll() //de Localidad
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/UnidadMedida/paged")).permitAll() //de UnidadMedida
 
+                                        //TEST
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/pedido/paged")).permitAll() //de pedido
+
                                         //Consola H2:
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
 
