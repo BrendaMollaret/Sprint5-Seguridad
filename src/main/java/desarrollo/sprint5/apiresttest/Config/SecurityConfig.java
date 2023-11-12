@@ -48,6 +48,8 @@ public class SecurityConfig {
 
                                         //TEST
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/pedido/paged")).permitAll() //de pedido
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/factura/paged")).permitAll() //de factura
+
 
                                         //Consola H2:
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
