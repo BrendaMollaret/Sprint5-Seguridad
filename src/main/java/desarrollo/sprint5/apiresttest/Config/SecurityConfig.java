@@ -31,8 +31,11 @@ public class SecurityConfig {
                                 authRequest
                                         //Rutas publicas:
 
-                                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll() //HABILITACION GLOBAL
+                                        .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() //HABILITACION GLOBAL
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).permitAll()
 
+
+                                        /*
                                         .requestMatchers(new AntPathRequestMatcher("/auth/register")).permitAll() //Registro Cliente
                                         .requestMatchers(new AntPathRequestMatcher("/auth/login")).permitAll() //Login general
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloInsumo/paged")).permitAll() //de articuloInsumo
@@ -55,6 +58,7 @@ public class SecurityConfig {
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/pedido/paged")).permitAll() //de pedido
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/factura/paged")).permitAll() //de factura
 
+                                         */
 
                                         //Consola H2:
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
