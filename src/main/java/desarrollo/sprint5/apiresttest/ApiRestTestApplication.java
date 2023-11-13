@@ -453,7 +453,7 @@ public class ApiRestTestApplication {
                     .costo(BigDecimal.valueOf(20))
                     .precioVenta(BigDecimal.valueOf(100))
                     .tiempoEstimadoCocina(5)
-                    .urlImagen_AM("https://scontent.fmdz5-1.fna.fbcdn.net/v/t1.6435-9/106783383_2811046685670345_295624655281942191_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=755d08&_nc_ohc=4RFuwCmu-xYAX8Zuvrp&_nc_ht=scontent.fmdz5-1.fna&oh=00_AfByYGVCm5T-u87nSu2eMGLEVhk_tVHLNKvDez7koARxMA&oe=6578CF42")
+                    .urlImagen_AM("ImagenMedallon")
                     .fechaAltaArticuloManufacturado(LocalDate.now())
                     .build();
 
