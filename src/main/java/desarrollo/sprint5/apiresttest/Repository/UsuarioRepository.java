@@ -20,4 +20,12 @@ public interface UsuarioRepository extends BaseRepository<Usuario,Long>{
             @Param("username") String username
     );
 
+    //Buscar un Usuario con el id de cliente relacionado
+    @Query(
+            value = "SELECT u.* FROM usuario u " +
+                    "WHERE u.cliente_id = :clienteId",
+            nativeQuery = true
+    )
+    Usuario findUsuarioByClienteId(@Param("clienteId") Long clienteId);
+
 }
