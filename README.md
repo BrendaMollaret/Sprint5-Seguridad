@@ -7,6 +7,7 @@
 - Mollaret Brenda
 - Cepeda Alexis
 - Albino Sergio
+- Santiago Marquez
 ---
 ### Requisitos
 
