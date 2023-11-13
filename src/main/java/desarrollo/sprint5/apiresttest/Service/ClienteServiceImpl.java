@@ -97,6 +97,13 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             Cliente clienteExistente = findById(clienteModifyDTO.getIdCliente());
             System.out.println("##################CLIENTE: "+clienteExistente.getId()+clienteExistente.getNombre());
 
+            //Modificando los datos del cliente
+            clienteExistente.setNombre(clienteModifyDTO.getNombre());
+            clienteExistente.setApellido(clienteModifyDTO.getApellido());
+            clienteExistente.setTelefono(clienteModifyDTO.getTelefono());
+            clienteExistente.setMail(clienteModifyDTO.getMail());
+            //Tambien hay que considerar que se pueda modificar el domicilio
+
 
             ModelMapper modelMapper = new ModelMapper();
             Cliente clienteModificado = modelMapper.map(clienteModifyDTO, Cliente.class);
@@ -119,6 +126,8 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             Usuario usuario = usuarioRepository.findUsuarioByClienteId(idCliente);
 
             usuario.setFechaBajaUsuario(LocalDate.now());
+            //Se deberia modificar la fecha modificacion a menos que contemple solo modificaciones y la baja no cuente como tal
+            //usuario.setFechaModificacionUsuario(LocalDate.now());
 
             return clienteRepository.save(clienteExistente);
         } catch (Exception e) {
