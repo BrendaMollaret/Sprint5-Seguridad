@@ -30,6 +30,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                                 authRequest
                                         //Rutas publicas:
+
+                                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll() //HABILITACION GLOBAL
+
                                         .requestMatchers(new AntPathRequestMatcher("/auth/register")).permitAll() //Registro Cliente
                                         .requestMatchers(new AntPathRequestMatcher("/auth/login")).permitAll() //Login general
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/articuloInsumo/paged")).permitAll() //de articuloInsumo
