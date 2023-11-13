@@ -384,7 +384,7 @@ public class ApiRestTestApplication {
                     .costo(BigDecimal.valueOf(60))
                     .precioVenta(BigDecimal.valueOf(800))
                     .tiempoEstimadoCocina(5)
-                    .urlImagen_AM("ImagenHamburguesa")
+                    .urlImagen_AM("https://culturaimpaciente.com/wp-content/uploads/2023/09/Curiosidad-8-1024x555.jpg")
                     .fechaAltaArticuloManufacturado(LocalDate.now())
                     .build();
 
@@ -400,7 +400,7 @@ public class ApiRestTestApplication {
                     .costo(BigDecimal.valueOf(70))
                     .precioVenta(BigDecimal.valueOf(150))
                     .tiempoEstimadoCocina(1)
-                    .urlImagen_AM("ImagenCoca")
+                    .urlImagen_AM("https://i.pinimg.com/736x/7d/f6/64/7df6644d25b128a24e4953c4335b60f7.jpg")
                     .fechaAltaArticuloManufacturado(LocalDate.now())
                     .build();
 
@@ -453,7 +453,7 @@ public class ApiRestTestApplication {
                     .costo(BigDecimal.valueOf(20))
                     .precioVenta(BigDecimal.valueOf(100))
                     .tiempoEstimadoCocina(5)
-                    .urlImagen_AM("ImagenMedallon")
+                    .urlImagen_AM("https://scontent.fmdz5-1.fna.fbcdn.net/v/t1.6435-9/106783383_2811046685670345_295624655281942191_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=755d08&_nc_ohc=4RFuwCmu-xYAX8Zuvrp&_nc_ht=scontent.fmdz5-1.fna&oh=00_AfByYGVCm5T-u87nSu2eMGLEVhk_tVHLNKvDez7koARxMA&oe=6578CF42")
                     .fechaAltaArticuloManufacturado(LocalDate.now())
                     .build();
 
