@@ -6,23 +6,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClienteDTO {
+public class ClienteModifyDTO {
 
-    String username;
+    Long idCliente;
+    int idRole;
 
     String nombre;
     String apellido;
     String telefono;
     String mail;
-    LocalDate fechaHoraModificacionCliente;
-    //Falta direccion
 
-    List<Domicilio> domicilioList;
+    //Domicilio
+    List <Domicilio> domicilios;
+
+    /*
+    Long idDomicilio;
+    String calle;
+    int nroCalle;
+    int pisoDpto;
+    int nroDpto;
+    Long idlocalidad;
+    */
 }

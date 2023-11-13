@@ -65,9 +65,11 @@ public class SecurityConfig {
 
                                         //Segun el rol
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/showProfile")).hasAnyAuthority( "CLIENTE", "CAJERO", "COCINERO","DELIVERY")
-                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/updateCliente")).hasAnyAuthority("CLIENTE", "CAJERO", "COCINERO","DELIVERY")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/updateProfile")).hasAnyAuthority("CLIENTE", "CAJERO", "COCINERO","DELIVERY")
 
                                         .requestMatchers(new AntPathRequestMatcher("/auth/registerEmployee")).hasAuthority("ADMIN") //Autenticacion
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/modifyCliente")).hasAuthority("ADMIN")
+                                        .requestMatchers(new AntPathRequestMatcher("/api/v1/cliente/deleteCliente")).hasAuthority("ADMIN")
 
 
                 )
