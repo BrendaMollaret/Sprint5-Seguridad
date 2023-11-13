@@ -3,17 +3,22 @@ package desarrollo.sprint5.apiresttest.Service;
 import desarrollo.sprint5.apiresttest.DTO.ClienteDTO;
 import desarrollo.sprint5.apiresttest.DTO.ClienteModifyDTO;
 import desarrollo.sprint5.apiresttest.Entity.Cliente;
+import desarrollo.sprint5.apiresttest.Entity.Domicilio;
 import desarrollo.sprint5.apiresttest.Entity.Usuario;
 import desarrollo.sprint5.apiresttest.Enumeration.EstadoCliente;
 import desarrollo.sprint5.apiresttest.Jwt.JwtService;
 import desarrollo.sprint5.apiresttest.Repository.BaseRepository;
 import desarrollo.sprint5.apiresttest.Repository.ClienteRepository;
+import desarrollo.sprint5.apiresttest.Repository.DomicilioRepository;
 import desarrollo.sprint5.apiresttest.Repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -28,6 +33,9 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private DomicilioRepository domicilioRepository;
 
     public ClienteServiceImpl(BaseRepository<Cliente, Long> baseRepository) {
         super(baseRepository);
@@ -55,6 +63,8 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
 
             ModelMapper modelMapper = new ModelMapper();
             ClienteDTO clienteDTO = modelMapper.map(cliente, ClienteDTO.class);
+
+            clienteDTO.setUsername(username);
 
             return clienteDTO;
         } catch (Exception e) {
@@ -97,12 +107,59 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             Cliente clienteExistente = findById(clienteModifyDTO.getIdCliente());
             System.out.println("##################CLIENTE: "+clienteExistente.getId()+clienteExistente.getNombre());
 
+            clienteExistente.setNombre(clienteModifyDTO.getNombre());
+            clienteExistente.setApellido(clienteModifyDTO.getApellido());
+            clienteExistente.setTelefono(clienteModifyDTO.getTelefono());
+            clienteExistente.setMail(clienteModifyDTO.getMail());
+            clienteExistente.setFechaHoraModificacionCliente(LocalDate.now());
+
+            // Cargar las instancias de Domicilio desde la base de datos utilizando sus identificadores
+            List<Domicilio> domicilios = new ArrayList<>();
+            for (Domicilio domicilio : clienteModifyDTO.getDomicilios()) {
+                Domicilio domicilioExistente = domicilioRepository.findById(domicilio.getId()).orElse(null);
+                if (domicilioExistente != null) {
+                    domicilios.add(domicilioExistente);
+                }
+            }
+
+            clienteExistente.setDomicilioList(domicilios);
+
+            /*
+            System.out.println("DOMICILIOS EXISTENTES: "+clienteExistente.getDomicilioList());
+
+            List<Domicilio> listaDeDomicilios = clienteExistente.getDomicilioList(); // Reemplaza "cliente" por tu instancia de Cliente
+            List<Domicilio> listaDeDomiciliosModificados = clienteModifyDTO.getDomicilios();
+
+            for (int i = 0; i < listaDeDomicilios.size(); i++) {
+
+                Domicilio domicilio = listaDeDomicilios.get(i);
+                Domicilio domicilioModificado = listaDeDomiciliosModificados.get(i);
+
+                domicilio.setCalle(domicilioModificado.getCalle());
+                domicilio.setNroCalle(domicilioModificado.getNroCalle());
+                domicilio.setPisoDpto(domicilioModificado.getPisoDpto());
+                domicilio.setNroDpto(domicilioModificado.getNroDpto());
+                domicilio.setFechaHoraModificacionDomicilio(LocalDate.now());
+
+                domicilio.setLocalidad(domicilioModificado.getLocalidad());
+
+                // Aquí puedes realizar operaciones con cada instancia de Domicilio
+                System.out.println("Calle: " + domicilio.getCalle());
+                System.out.println("Localidad: " + domicilio.getLocalidad());
+                //System.out.println("Número: " + domicilio.getNumero());
+                // Realiza otras operaciones según tus necesidades
+            }
+
+            System.out.println("DOMICILIOS EXISTENTES: "+clienteExistente.getDomicilioList());
+            System.out.println("DOMICILIOS: "+clienteModifyDTO.getDomicilios());
+
+            //clienteExistente.setDomicilioList(clienteModifyDTO.getDomicilios());
 
             ModelMapper modelMapper = new ModelMapper();
             Cliente clienteModificado = modelMapper.map(clienteModifyDTO, Cliente.class);
-            clienteModificado.setFechaHoraModificacionCliente(LocalDate.now());
+             */
 
-            return clienteRepository.save(clienteModificado);
+            return clienteRepository.save(clienteExistente);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

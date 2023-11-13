@@ -64,6 +64,8 @@ public class AuthService {
                 .estadoCliente(EstadoCliente.ALTA)
                 .build();
 
+        cliente.agregarDomicilio(domicilio);
+
         Usuario user = Usuario.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
