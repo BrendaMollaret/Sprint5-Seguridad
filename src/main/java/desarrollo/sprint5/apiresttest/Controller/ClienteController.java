@@ -1,6 +1,7 @@
 package desarrollo.sprint5.apiresttest.Controller;
 
 import desarrollo.sprint5.apiresttest.DTO.ClienteDTO;
+import desarrollo.sprint5.apiresttest.DTO.ClienteModifyDTO;
 import desarrollo.sprint5.apiresttest.Entity.Cliente;
 import desarrollo.sprint5.apiresttest.Service.ClienteServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -31,15 +32,32 @@ public class ClienteController extends BaseControllerImpl<Cliente, ClienteServic
         }
     }
 
-    @PutMapping("/updateCliente")
-    public ResponseEntity<?> updateCliente(@RequestHeader(name = "Authorization") String token, @RequestBody ClienteDTO clienteActualizado) {
+    @PutMapping("/updateProfile")
+    public ResponseEntity<?> updateProfile(@RequestHeader(name = "Authorization") String token, @RequestBody ClienteDTO clienteActualizado) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(servicio.updateCliente(token, clienteActualizado));
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.updateProfile(token, clienteActualizado));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Los datos de la solicitud son inválidos. Por favor, revise los datos e intente de nuevo.\"}");
         }
     }
 
+    @PutMapping("/modifyCliente")
+    public ResponseEntity<?> modifyCliente(@RequestBody ClienteModifyDTO clienteModifyDTO) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.modifyCliente(clienteModifyDTO));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Los datos de la solicitud son inválidos. Por favor, revise los datos e intente de nuevo.\"}");
+        }
+    }
+
+    @PutMapping("/deleteCliente")
+    public ResponseEntity<?> deleteCliente(@RequestBody Long idCliente) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.deleteCliente(idCliente));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Los datos de la solicitud son inválidos. Por favor, revise los datos e intente de nuevo.\"}");
+        }
+    }
 
 
 }

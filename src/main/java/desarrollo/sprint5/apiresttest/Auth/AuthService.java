@@ -45,13 +45,13 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
 
         //Debio a esto ahora siempre hay que enviar localidad
-        Localidad localidad = localidadRepository.getOne(request.idlocalidad);
+        Localidad localidad = localidadRepository.getOne(request.getIdlocalidad());
 
         Domicilio domicilio = Domicilio.builder()
-                .calle(request.calle)
-                .nroCalle(request.nroCalle)
-                .pisoDpto(request.pisoDpto)
-                .nroDpto(request.nroDpto)
+                .calle(request.getCalle())
+                .nroCalle(request.getNroCalle())
+                .pisoDpto(request.getPisoDpto())
+                .nroDpto(request.getNroDpto())
                 .localidad(localidad)
                 .build();
 
