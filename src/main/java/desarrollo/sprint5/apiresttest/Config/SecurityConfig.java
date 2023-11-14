@@ -34,7 +34,6 @@ public class SecurityConfig {
                                         .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll() //HABILITACION GLOBAL
                                         .requestMatchers(new AntPathRequestMatcher("/api/v1/**")).permitAll()
 
-
                                         /*
                                         .requestMatchers(new AntPathRequestMatcher("/auth/register")).permitAll() //Registro Cliente
                                         .requestMatchers(new AntPathRequestMatcher("/auth/login")).permitAll() //Login general

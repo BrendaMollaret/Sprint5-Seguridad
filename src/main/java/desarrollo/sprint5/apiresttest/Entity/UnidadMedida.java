@@ -19,7 +19,7 @@ public class UnidadMedida extends BaseEntity {
     private String nombreUnidadMedida;
 
     @Column(name = "abreviatura_unidad_medida")
-    private String abrevitaturaUnidadMedida;
+    private String abreviaturaUnidadMedida;
 
     @Column(name = "fecha_alta_unidad_medida")
     private LocalDate fechaAltaUnidadMedida;
