@@ -93,6 +93,7 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaCliente(LocalDate.now())
                     .mail("admin@mail.com")
                     .telefono("23646")
+                    .estadoCliente(EstadoCliente.ALTA)
                     .build();
 
             Cliente cliente1 = Cliente.builder()
@@ -101,6 +102,7 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaCliente(LocalDate.now())
                     .mail("juanjuanapellido@mail.com")
                     .telefono("555-555")
+                    .estadoCliente(EstadoCliente.ALTA)
                     .build();
 
             Cliente cliente2 = Cliente.builder()
@@ -109,6 +111,7 @@ public class ApiRestTestApplication {
                     .fechaHoraAltaCliente(LocalDate.now())
                     .mail("pedroapellidopedro@mail.com")
                     .telefono("0606456")
+                    .estadoCliente(EstadoCliente.ALTA)
                     .build();
 
             cliente1.agregarDomicilio(domicilio1);
@@ -133,12 +136,14 @@ public class ApiRestTestApplication {
                     .username("Usuario123")
                     .password(passwordEncoder.encode("123456789"))
                     .fechaAltaUsuario(LocalDate.now())
+                    .role(Role.CLIENTE)
                     .build();
 
             Usuario usuario2 = Usuario.builder()
                     .username("Usuario456")
                     .password(passwordEncoder.encode("123456789"))
                     .fechaAltaUsuario(LocalDate.now())
+                    .role(Role.CLIENTE)
                     .build();
 
             usuario1.setCliente(cliente1);
