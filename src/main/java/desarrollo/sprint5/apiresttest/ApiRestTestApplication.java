@@ -157,13 +157,13 @@ public class ApiRestTestApplication {
 
             UnidadMedida unidadMedidaGr = UnidadMedida.builder()
                     .nombreUnidadMedida("Gramos")
-                    .abrevitaturaUnidadMedida("gr")
+                    .abreviaturaUnidadMedida("gr")
                     .fechaAltaUnidadMedida(LocalDate.now())
                     .build();
 
             UnidadMedida unidadMedidaMl = UnidadMedida.builder()
                     .nombreUnidadMedida("Mililitros")
-                    .abrevitaturaUnidadMedida("ml")
+                    .abreviaturaUnidadMedida("ml")
                     .fechaAltaUnidadMedida(LocalDate.now())
                     .build();
 
