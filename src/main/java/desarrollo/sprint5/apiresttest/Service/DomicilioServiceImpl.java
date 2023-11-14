@@ -17,4 +17,14 @@ public class DomicilioServiceImpl extends BaseServiceImpl<Domicilio, Long> imple
         super(baseRepository);
 
     }
+
+    @Override
+    public boolean domicilioPerteneceAlCliente(Long idDomicilio, Long idCliente) throws Exception {
+        try {
+            boolean result = domicilioRepository.domicilioPerteneceAlCliente(idDomicilio, idCliente);
+            return result;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

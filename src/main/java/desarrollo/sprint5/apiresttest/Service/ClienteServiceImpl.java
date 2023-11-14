@@ -2,15 +2,14 @@ package desarrollo.sprint5.apiresttest.Service;
 
 import desarrollo.sprint5.apiresttest.DTO.ClienteDTO;
 import desarrollo.sprint5.apiresttest.DTO.ClienteModifyDTO;
+import desarrollo.sprint5.apiresttest.DTO.DomicilioDTO;
 import desarrollo.sprint5.apiresttest.Entity.Cliente;
 import desarrollo.sprint5.apiresttest.Entity.Domicilio;
+import desarrollo.sprint5.apiresttest.Entity.Localidad;
 import desarrollo.sprint5.apiresttest.Entity.Usuario;
 import desarrollo.sprint5.apiresttest.Enumeration.EstadoCliente;
 import desarrollo.sprint5.apiresttest.Jwt.JwtService;
-import desarrollo.sprint5.apiresttest.Repository.BaseRepository;
-import desarrollo.sprint5.apiresttest.Repository.ClienteRepository;
-import desarrollo.sprint5.apiresttest.Repository.DomicilioRepository;
-import desarrollo.sprint5.apiresttest.Repository.UsuarioRepository;
+import desarrollo.sprint5.apiresttest.Repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
@@ -36,6 +35,12 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
 
     @Autowired
     private DomicilioRepository domicilioRepository;
+
+    @Autowired
+    private DomicilioService domicilioService;
+
+    @Autowired
+    private LocalidadRepository localidadRepository;
 
     public ClienteServiceImpl(BaseRepository<Cliente, Long> baseRepository) {
         super(baseRepository);
@@ -113,51 +118,25 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             clienteExistente.setMail(clienteModifyDTO.getMail());
             clienteExistente.setFechaHoraModificacionCliente(LocalDate.now());
 
-            // Cargar las instancias de Domicilio desde la base de datos utilizando sus identificadores
-            List<Domicilio> domicilios = new ArrayList<>();
-            for (Domicilio domicilio : clienteModifyDTO.getDomicilios()) {
-                Domicilio domicilioExistente = domicilioRepository.findById(domicilio.getId()).orElse(null);
-                if (domicilioExistente != null) {
-                    domicilios.add(domicilioExistente);
+            for (DomicilioDTO domicilioDTO : clienteModifyDTO.getDomicilios()) {
+                Domicilio domicilioExistente = domicilioRepository.findById(domicilioDTO.getIdDomicilio()).orElse(null);
+
+                if ((domicilioExistente != null) &&
+                        domicilioService.domicilioPerteneceAlCliente(domicilioExistente.getId(), clienteModifyDTO.getIdCliente())) {
+                    domicilioExistente.setCalle(domicilioDTO.getCalle());
+                    domicilioExistente.setNroCalle(domicilioDTO.getNroCalle());
+                    domicilioExistente.setPisoDpto(domicilioDTO.getPisoDpto());
+                    domicilioExistente.setNroDpto(domicilioDTO.getNroDpto());
+                    domicilioExistente.setFechaHoraModificacionDomicilio(LocalDate.now());
+
+                    Localidad localidadExistente = localidadRepository.findById(domicilioExistente.getLocalidad().getId()).orElse(null);
+
+                    if (localidadExistente != null) {
+                        domicilioExistente.setLocalidad(localidadExistente);
+                    }
                 }
+                System.out.println("#############RESULTADO service: "+domicilioService.domicilioPerteneceAlCliente(domicilioExistente.getId(), clienteModifyDTO.getIdCliente()));
             }
-
-            clienteExistente.setDomicilioList(domicilios);
-
-            /*
-            System.out.println("DOMICILIOS EXISTENTES: "+clienteExistente.getDomicilioList());
-
-            List<Domicilio> listaDeDomicilios = clienteExistente.getDomicilioList(); // Reemplaza "cliente" por tu instancia de Cliente
-            List<Domicilio> listaDeDomiciliosModificados = clienteModifyDTO.getDomicilios();
-
-            for (int i = 0; i < listaDeDomicilios.size(); i++) {
-
-                Domicilio domicilio = listaDeDomicilios.get(i);
-                Domicilio domicilioModificado = listaDeDomiciliosModificados.get(i);
-
-                domicilio.setCalle(domicilioModificado.getCalle());
-                domicilio.setNroCalle(domicilioModificado.getNroCalle());
-                domicilio.setPisoDpto(domicilioModificado.getPisoDpto());
-                domicilio.setNroDpto(domicilioModificado.getNroDpto());
-                domicilio.setFechaHoraModificacionDomicilio(LocalDate.now());
-
-                domicilio.setLocalidad(domicilioModificado.getLocalidad());
-
-                // Aquí puedes realizar operaciones con cada instancia de Domicilio
-                System.out.println("Calle: " + domicilio.getCalle());
-                System.out.println("Localidad: " + domicilio.getLocalidad());
-                //System.out.println("Número: " + domicilio.getNumero());
-                // Realiza otras operaciones según tus necesidades
-            }
-
-            System.out.println("DOMICILIOS EXISTENTES: "+clienteExistente.getDomicilioList());
-            System.out.println("DOMICILIOS: "+clienteModifyDTO.getDomicilios());
-
-            //clienteExistente.setDomicilioList(clienteModifyDTO.getDomicilios());
-
-            ModelMapper modelMapper = new ModelMapper();
-            Cliente clienteModificado = modelMapper.map(clienteModifyDTO, Cliente.class);
-             */
 
             return clienteRepository.save(clienteExistente);
         } catch (Exception e) {
@@ -182,6 +161,5 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long> implements
             throw new Exception(e.getMessage());
         }
     }
-
 
 }

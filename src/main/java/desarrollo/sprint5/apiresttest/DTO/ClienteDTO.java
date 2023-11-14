@@ -17,6 +17,7 @@ public class ClienteDTO {
 
     String username;
 
+    Long id;
     String nombre;
     String apellido;
     String telefono;

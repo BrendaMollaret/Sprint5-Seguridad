@@ -87,6 +87,14 @@ public class ApiRestTestApplication {
 
 
             //----------- CREACIÓN DE CLIENTE -----------
+            Cliente adminCliente = Cliente.builder()
+                    .nombre("admin")
+                    .apellido("ADMIN")
+                    .fechaHoraAltaCliente(LocalDate.now())
+                    .mail("admin@mail.com")
+                    .telefono("23646")
+                    .build();
+
             Cliente cliente1 = Cliente.builder()
                     .nombre("Juan")
                     .apellido("ApellidoJuan")
@@ -118,19 +126,18 @@ public class ApiRestTestApplication {
                     .role(Role.ADMIN)
                     .build();
 
+            admin.setCliente(adminCliente);
             usuarioRepository.save(admin);
 
             Usuario usuario1 = Usuario.builder()
                     .username("Usuario123")
-                    //.auth0Id("0987")
-                    .password("123456789")
+                    .password(passwordEncoder.encode("123456789"))
                     .fechaAltaUsuario(LocalDate.now())
                     .build();
 
             Usuario usuario2 = Usuario.builder()
                     .username("Usuario456")
-                    //.auth0Id("1234")
-                    .password("123456789")
+                    .password(passwordEncoder.encode("123456789"))
                     .fechaAltaUsuario(LocalDate.now())
                     .build();
 
@@ -197,8 +204,6 @@ public class ApiRestTestApplication {
 
             rubroVacuna.setRubroPadre(rubroCarne);
             rubroCarne.agregarRubroHijo(rubroVacuna);
-
-
 
             Rubro rubroBebida = Rubro.builder()
                     .nombreRubro("Bebida")
@@ -300,8 +305,6 @@ public class ApiRestTestApplication {
             articuloInsumoCocaCola.setRubro(rubroConGas);
             articuloInsumoFanta.setRubro(rubroConGas);
             articuloInsumoAgua.setRubro(rubroSinGas);
-
-
 
             //----------- CREACIÓN DE UN DETALLEARTICULOMANUFACTURADO -----------
 

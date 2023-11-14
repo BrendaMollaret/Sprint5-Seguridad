@@ -20,7 +20,7 @@ public interface ClienteRepository extends BaseRepository<Cliente, Long>{
     //Buscar un cliente con su username de Usuario
     @Query(
             value = "SELECT c.* FROM usuario u " +
-                    "INNER JOIN cliente c ON u.cliente_id = c.id " +
+                    "INNER JOIN cliente c ON u.cliente_id = c.id AND c.estado_cliente = '1'" +
                     "WHERE u.username = :username",
             nativeQuery = true
     )
