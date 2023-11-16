@@ -179,8 +179,8 @@ public class ApiRestTestApplication {
                     .fechaAltaRubro(LocalDate.now())
                     .build();
 
-            rubroVerdura.setRubroPadre(rubroVerduleria);
-            rubroVerduleria.agregarRubroHijo(rubroVerdura);
+            /*rubroVerdura.setRubroPadre(rubroVerduleria);
+            rubroVerduleria.agregarRubroHijo(rubroVerdura);*/
 
 
             Rubro rubroFiambreria = Rubro.builder()
@@ -194,8 +194,8 @@ public class ApiRestTestApplication {
                     .build();
 
 
-            rubroQueso.setRubroPadre(rubroFiambreria);
-            rubroFiambreria.agregarRubroHijo(rubroQueso);
+            /*rubroQueso.setRubroPadre(rubroFiambreria);
+            rubroFiambreria.agregarRubroHijo(rubroQueso);*/
 
             Rubro rubroCarne = Rubro.builder()
                     .nombreRubro("Carne")
@@ -207,8 +207,8 @@ public class ApiRestTestApplication {
                     .fechaAltaRubro(LocalDate.now())
                     .build();
 
-            rubroVacuna.setRubroPadre(rubroCarne);
-            rubroCarne.agregarRubroHijo(rubroVacuna);
+            /*rubroVacuna.setRubroPadre(rubroCarne);
+            rubroCarne.agregarRubroHijo(rubroVacuna);*/
 
             Rubro rubroBebida = Rubro.builder()
                     .nombreRubro("Bebida")
@@ -225,11 +225,11 @@ public class ApiRestTestApplication {
                     .fechaAltaRubro(LocalDate.now())
                     .build();
 
-            rubroBebida.agregarRubroHijo(rubroConGas);
+            /*rubroBebida.agregarRubroHijo(rubroConGas);
             rubroBebida.agregarRubroHijo(rubroSinGas);
 
             rubroConGas.setRubroPadre(rubroBebida);
-            rubroSinGas.setRubroPadre(rubroBebida);
+            rubroSinGas.setRubroPadre(rubroBebida);*/
 
 
 

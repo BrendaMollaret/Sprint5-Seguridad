@@ -32,7 +32,7 @@ public class Rubro extends BaseEntity {
 
 
     //Relaciones
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    /*@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rubro_padre")
     @JsonBackReference // Usar esta anotación para evitar la recursión infinita al serializar
     private Rubro rubroPadre;
@@ -45,6 +45,6 @@ public class Rubro extends BaseEntity {
     public void agregarRubroHijo(Rubro rubro) {
         rubroHijoList.add(rubro);
 
-    }
+    }*/
 
 }

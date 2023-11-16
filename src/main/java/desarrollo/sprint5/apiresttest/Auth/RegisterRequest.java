@@ -23,5 +23,5 @@ public class RegisterRequest {
     int nroCalle;
     int pisoDpto;
     int nroDpto;
-    Long idlocalidad;
+    //Long idlocalidad;
 }
